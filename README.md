@@ -1,3 +1,1 @@
 # LaTableDuMilieu
-
-TEST
