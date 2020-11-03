@@ -1,6 +1,3 @@
 # LaTableDuMilieu
 
-
-TEST
-
-un super theme
+TOUS A DISPARUS 
