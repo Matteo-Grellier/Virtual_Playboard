@@ -1,0 +1,43 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\matte\\Documents\\Programmation\\LaTableDuMilieu\\LaTableDuMilieu\\Virtual_Playboard.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\matte\\Documents\\Programmation\\LaTableDuMilieu\\LaTableDuMilieu\\Virtual_Playboard.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\matte\\Documents\\Programmation\\LaTableDuMilieu\\LaTableDuMilieu\\Virtual_Playboard.csproj",
+        "projectName": "Virtual_Playboard",
+        "projectPath": "C:\\Users\\matte\\Documents\\Programmation\\LaTableDuMilieu\\LaTableDuMilieu\\Virtual_Playboard.csproj",
+        "packagesPath": "C:\\Users\\matte\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\matte\\Documents\\Programmation\\LaTableDuMilieu\\LaTableDuMilieu\\.mono\\temp\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\matte\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

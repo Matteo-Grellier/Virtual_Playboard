@@ -1,0 +1,8 @@
+C:\Users\matte\Documents\Programmation\LaTableDuMilieu\LaTableDuMilieu\.mono\temp\bin\Debug\Virtual_Playboard.dll
+C:\Users\matte\Documents\Programmation\LaTableDuMilieu\LaTableDuMilieu\.mono\temp\bin\Debug\Virtual_Playboard.pdb
+C:\Users\matte\Documents\Programmation\LaTableDuMilieu\LaTableDuMilieu\.mono\temp\obj\Debug\Virtual_Playboard.csprojAssemblyReference.cache
+C:\Users\matte\Documents\Programmation\LaTableDuMilieu\LaTableDuMilieu\.mono\temp\obj\Debug\Virtual_Playboard.AssemblyInfoInputs.cache
+C:\Users\matte\Documents\Programmation\LaTableDuMilieu\LaTableDuMilieu\.mono\temp\obj\Debug\Virtual_Playboard.AssemblyInfo.cs
+C:\Users\matte\Documents\Programmation\LaTableDuMilieu\LaTableDuMilieu\.mono\temp\obj\Debug\Virtual_Playboard.csproj.CoreCompileInputs.cache
+C:\Users\matte\Documents\Programmation\LaTableDuMilieu\LaTableDuMilieu\.mono\temp\obj\Debug\Virtual_Playboard.dll
+C:\Users\matte\Documents\Programmation\LaTableDuMilieu\LaTableDuMilieu\.mono\temp\obj\Debug\Virtual_Playboard.pdb
