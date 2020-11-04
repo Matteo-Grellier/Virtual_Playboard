@@ -1,10 +1,25 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 31.9918, 32.0539 )
 
 [node name="Node2D" type="Node2D"]
 
 [node name="icon" type="Sprite" parent="."]
-position = Vector2( 517, 169 )
-scale = Vector2( 1, 1.25 )
+position = Vector2( 558.303, 117.14 )
+scale = Vector2( 1.01971, 0.986861 )
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="icon"]
+position = Vector2( -678.037, -242.665 )
+scale = Vector2( 1, 1 )
+motion/sync_to_physics = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="icon/KinematicBody2D"]
+position = Vector2( 677.955, 242.533 )
+shape = SubResource( 1 )
