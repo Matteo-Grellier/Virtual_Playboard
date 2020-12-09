@@ -12,3 +12,4 @@ Virtual_Playboard/.mono/temp/obj/Debug/Virtual_Playboard.pdb
 *.translation
 export_presets.cfg
 .mono/
+Virtual_Playboard/bin/win64/release/libgitapi.dll
