@@ -3,8 +3,8 @@ using System;
 
 public class test : KinematicBody2D
 {
-    [Export] public int speed = 3000;
-//test mdrrr
+    [Export] public int speed = 100;
+//test lool
     public Vector2 velocity = new Vector2();
 
     private string str = "Hello World";
