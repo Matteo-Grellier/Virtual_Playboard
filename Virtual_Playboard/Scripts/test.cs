@@ -3,14 +3,15 @@ using System;
 
 public class test : KinematicBody2D
 {
-    [Export] public int speed = 300;
+    // speed du perso
+    [Export] public int speed = 200;
 
     public Vector2 velocity = new Vector2();
 
     public void GetInput()
     {
         velocity = new Vector2();
-
+        //Les différentes directions
         if (Input.IsActionPressed("right"))
             velocity.x += 1;
 
@@ -22,7 +23,7 @@ public class test : KinematicBody2D
 
         if (Input.IsActionPressed("up"))
             velocity.y -= 1;
-
+        //donner une valeur de vitesse
         velocity = velocity.Normalized() * speed;
     }
 
