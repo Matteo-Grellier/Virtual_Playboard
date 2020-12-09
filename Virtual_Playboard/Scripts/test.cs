@@ -8,6 +8,8 @@ public class test : KinematicBody2D
 
     public Vector2 velocity = new Vector2();
 
+    private string str = "Hello World";
+
     public void GetInput()
     {
         velocity = new Vector2();
@@ -25,6 +27,8 @@ public class test : KinematicBody2D
             velocity.y -= 1;
         //donner une valeur de vitesse
         velocity = velocity.Normalized() * speed;
+
+        GD.Print(str);
     }
 
     public override void _PhysicsProcess(float delta)
