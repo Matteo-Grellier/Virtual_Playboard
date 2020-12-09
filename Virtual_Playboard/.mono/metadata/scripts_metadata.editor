@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"res://Scripts/new_script.cs":{"modified_time":"1607511049","class":{"namespace":"","class_name":"new_script","nested":false}},"res://Scripts/test.cs":{"modified_time":"1607513356","class":{"namespace":"","class_name":"test","nested":false}}}
+=======
+{"res://Scripts/new_script.cs":{"modified_time":"1607511765","class":{"namespace":"","class_name":"new_script","nested":false}},"res://Scripts/test.cs":{"modified_time":"1607513066","class":{"namespace":"","class_name":"test","nested":false}}}
+>>>>>>> f4454b6223c3aef275f039f268878d119eaafb7b
