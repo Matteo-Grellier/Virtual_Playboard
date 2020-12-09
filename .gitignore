@@ -1,18 +1,3 @@
-Virtual_Playboard/.mono/metadata/ide_messaging_meta.txt
-README.md
-Virtual_Playboard\Virtual_Playboard\Exportations
-Virtual_Playboard/.mono/metadata/scripts_metadata.editor
-Virtual_Playboard/.mono/metadata/scripts_metadata.editor_player
-Virtual_Playboard/.mono/temp/bin/Debug/Virtual_Playboard.dll
-Virtual_Playboard/.mono/temp/bin/Debug/Virtual_Playboard.pdb
-Virtual_Playboard/.mono/temp/obj/Debug/Virtual_Playboard.assets.cache
-Virtual_Playboard/.mono/temp/obj/Debug/Virtual_Playboard.dll
-Virtual_Playboard/.mono/temp/obj/Debug/Virtual_Playboard.pdb
-.import/
-*.translation
-export_presets.cfg
-.mono/
-
 
 # Godot-specific ignores
 .import/
