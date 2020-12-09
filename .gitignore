@@ -6,4 +6,24 @@ Virtual_Playboard\Virtual_Playboard\Exportations
 *.translation
 export_presets.cfg
 
-!Virtual_Playboard/.mono
+
+
+# Godot-specific ignores
+.import/
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+!.mono/
+data_*/
+mono_crash.*.json
+
+# System/tool-specific ignores
+.directory
+*~
+
+# Plugin specific ignores
+screenshots/
+
+
