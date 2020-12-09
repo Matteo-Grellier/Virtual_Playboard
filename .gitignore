@@ -1,12 +1,3 @@
-Virtual_Playboard/.mono/metadata/ide_messaging_meta.txt
-README.md
-Virtual_Playboard\Virtual_Playboard\Exportations
-
-.import/
-*.translation
-export_presets.cfg
-
-
 
 # Godot-specific ignores
 .import/
