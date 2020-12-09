@@ -8,24 +8,26 @@
     ".NETFramework,Version=v4.7.2": []
   },
   "packageFolders": {
-    "C:\\Users\\matte\\.nuget\\packages\\": {}
+    "C:\\Users\\winde\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\matte\\Documents\\Programmation\\Virtual_Playboard\\Virtual_Playboard\\Virtual_Playboard.csproj",
+      "projectUniqueName": "C:\\Users\\winde\\Documents\\GitHub\\Virtual_Playboard\\Virtual_Playboard\\Virtual_Playboard.csproj",
       "projectName": "Virtual_Playboard",
-      "projectPath": "C:\\Users\\matte\\Documents\\Programmation\\Virtual_Playboard\\Virtual_Playboard\\Virtual_Playboard.csproj",
-      "packagesPath": "C:\\Users\\matte\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\matte\\Documents\\Programmation\\Virtual_Playboard\\Virtual_Playboard\\.mono\\temp\\obj\\",
+      "projectPath": "C:\\Users\\winde\\Documents\\GitHub\\Virtual_Playboard\\Virtual_Playboard\\Virtual_Playboard.csproj",
+      "packagesPath": "C:\\Users\\winde\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\winde\\Documents\\GitHub\\Virtual_Playboard\\Virtual_Playboard\\.mono\\temp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\matte\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\winde\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net472"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
