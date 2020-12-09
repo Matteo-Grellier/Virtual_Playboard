@@ -1,26 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/test.cs" type="Script" id=2]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 32 )
 
 [node name="Node2D" type="Node2D"]
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-position = Vector2( 428, 197 )
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="KinematicBody2D"]
-shape = SubResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="icon" type="Sprite" parent="KinematicBody2D"]
-position = Vector2( -1, 0 )
+[node name="icon" type="Sprite" parent="."]
+position = Vector2( 401, 272 )
 texture = ExtResource( 1 )
