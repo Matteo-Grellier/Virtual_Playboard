@@ -19,6 +19,10 @@ config/name="Virtual_Playboard"
 run/main_scene="res://Scènes/Node2D.tscn"
 config/icon="res://icon.png"
 
+[gdnative]
+
+singletons=[  ]
+
 [input]
 
 left={
