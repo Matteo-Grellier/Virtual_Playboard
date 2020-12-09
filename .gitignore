@@ -8,3 +8,7 @@ Virtual_Playboard/.mono/temp/bin/Debug/Virtual_Playboard.pdb
 Virtual_Playboard/.mono/temp/obj/Debug/Virtual_Playboard.assets.cache
 Virtual_Playboard/.mono/temp/obj/Debug/Virtual_Playboard.dll
 Virtual_Playboard/.mono/temp/obj/Debug/Virtual_Playboard.pdb
+.import/
+*.translation
+export_presets.cfg
+.mono/
