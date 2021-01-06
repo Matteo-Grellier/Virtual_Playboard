@@ -16,8 +16,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Virtual_Playboard"
-run/main_scene="res://Scènes/Node2D.tscn"
+run/main_scene="res://Scènes/Main.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=512
+window/size/height=512
 
 [gdnative]
 
