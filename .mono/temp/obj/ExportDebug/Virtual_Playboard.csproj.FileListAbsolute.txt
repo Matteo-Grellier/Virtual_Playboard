@@ -1,0 +1,16 @@
+C:\Users\matte\Documents\Programmation\Virtual_Playboard\Virtual_Playboard\.mono\temp\bin\ExportDebug\Virtual_Playboard.dll
+C:\Users\matte\Documents\Programmation\Virtual_Playboard\Virtual_Playboard\.mono\temp\bin\ExportDebug\Virtual_Playboard.pdb
+C:\Users\matte\Documents\Programmation\Virtual_Playboard\Virtual_Playboard\.mono\temp\obj\ExportDebug\Virtual_Playboard.csprojAssemblyReference.cache
+C:\Users\matte\Documents\Programmation\Virtual_Playboard\Virtual_Playboard\.mono\temp\obj\ExportDebug\Virtual_Playboard.AssemblyInfoInputs.cache
+C:\Users\matte\Documents\Programmation\Virtual_Playboard\Virtual_Playboard\.mono\temp\obj\ExportDebug\Virtual_Playboard.AssemblyInfo.cs
+C:\Users\matte\Documents\Programmation\Virtual_Playboard\Virtual_Playboard\.mono\temp\obj\ExportDebug\Virtual_Playboard.csproj.CoreCompileInputs.cache
+C:\Users\matte\Documents\Programmation\Virtual_Playboard\Virtual_Playboard\.mono\temp\obj\ExportDebug\Virtual_Playboard.dll
+C:\Users\matte\Documents\Programmation\Virtual_Playboard\Virtual_Playboard\.mono\temp\obj\ExportDebug\Virtual_Playboard.pdb
+C:\Users\matte\Documents\Programmation\Virtual_Playboard\.mono\temp\obj\ExportDebug\Virtual_Playboard.csprojAssemblyReference.cache
+C:\Users\matte\Documents\Programmation\Virtual_Playboard\.mono\temp\obj\ExportDebug\Virtual_Playboard.AssemblyInfoInputs.cache
+C:\Users\matte\Documents\Programmation\Virtual_Playboard\.mono\temp\obj\ExportDebug\Virtual_Playboard.AssemblyInfo.cs
+C:\Users\matte\Documents\Programmation\Virtual_Playboard\.mono\temp\obj\ExportDebug\Virtual_Playboard.csproj.CoreCompileInputs.cache
+C:\Users\matte\Documents\Programmation\Virtual_Playboard\.mono\temp\obj\ExportDebug\Virtual_Playboard.dll
+C:\Users\matte\Documents\Programmation\Virtual_Playboard\.mono\temp\obj\ExportDebug\Virtual_Playboard.pdb
+C:\Users\matte\Documents\Programmation\Virtual_Playboard\.mono\temp\bin\ExportDebug\Virtual_Playboard.dll
+C:\Users\matte\Documents\Programmation\Virtual_Playboard\.mono\temp\bin\ExportDebug\Virtual_Playboard.pdb
