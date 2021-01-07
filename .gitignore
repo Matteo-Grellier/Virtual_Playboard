@@ -6,7 +6,11 @@
 *.translation
 
 # Mono-specific ignores
+<<<<<<< HEAD
 !.mono/
+=======
+.mono/
+>>>>>>> bfd6b7ca083a0aefd42168cd24aebd9f9cd4e6d2
 data_*/
 mono_crash.*.json
 
