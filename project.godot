@@ -56,6 +56,14 @@ click={
  ]
 }
 
+[logging]
+
+file_logging/enable_file_logging=true
+
+[mono]
+
+project/auto_update_project=false
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
