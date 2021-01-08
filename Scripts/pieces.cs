@@ -50,7 +50,7 @@ public class pieces : KinematicBody2D
     {
         velocity = Position.DirectionTo(toMovement) * speed;
 
-        if (Position.DistanceTo(toMovement) > 0)
+        if (Position.DistanceTo(toMovement) > 5)
         {
             velocity = MoveAndSlide(velocity);
         }
