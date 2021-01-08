@@ -24,10 +24,10 @@ public class pieces : KinematicBody2D
         // rightCoor = test.RightCoor(mouseClick.x, mouseClick.y);
 
         //Mouse in viewport coordinates.
-        if (@event is InputEventMouseButton eventMouseButton)
+        if (@event.IsActionPressed("click"))
         {
-            GD.Print("Mouse Click/Unclick at: ", eventMouseButton.Position);
-            mouseClick = eventMouseButton.Position;
+            GD.Print("Mouse Click/Unclick at: ", GetGlobalMousePosition());
+            mouseClick = GetGlobalMousePosition();
 
             //Debug
             GD.Print(mouseClick.x);
