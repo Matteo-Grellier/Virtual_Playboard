@@ -15,17 +15,17 @@ texture = ExtResource( 1 )
 centered = false
 script = ExtResource( 4 )
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+[node name="FirstPieces" type="KinematicBody2D" parent="."]
 position = Vector2( 32, 32 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
-scale = Vector2( 3, 3 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FirstPieces"]
+scale = Vector2( 3.2, 3.2 )
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="KinematicBody2D/CollisionShape2D"]
+[node name="Sprite" type="Sprite" parent="FirstPieces/CollisionShape2D"]
 scale = Vector2( 0.025, 0.02 )
 texture = ExtResource( 2 )
