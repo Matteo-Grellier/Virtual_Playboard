@@ -58,10 +58,16 @@ public class pieces : KinematicBody2D
 
         velocity = Position.DirectionTo(toMovement) * speed;
 
-        // if (Position.DistanceTo(toMovement) > 0)
-        // {
+        if (Position.DistanceTo(toMovement) > 5)
+        {
         velocity = MoveAndSlide(velocity);
-        // }
+        }
+        else
+        {
+            //SetGlobalPosition(toMovement);
+            //GlobalPosition = new Vector2(toMovement.x, toMovement.y);
+            GlobalPosition = toMovement;
+        }
 
         //obj.Position = mouseClick.LinearInterpolate(toMovement, t);
     }
