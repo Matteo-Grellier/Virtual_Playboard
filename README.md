@@ -21,7 +21,7 @@
 
 ## Usefull
 
-Pour lancer le projet il vous faux [Godot](https://godotengine.org/download) ATTENTION : Il vous faut télécharger la ``version mono``
+Pour lancer le projet il vous faut [Godot](https://godotengine.org/download) ATTENTION : Il vous faut télécharger la ``version mono``
 
 
 Ainsi que ces deux modules : 
