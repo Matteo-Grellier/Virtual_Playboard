@@ -10,7 +10,7 @@
 
 ## DEMO
 
-![](imgReadme/Demo.gif)
+![](imgReadme/Demo2.gif)
 
 ## CHANGELOG
 
