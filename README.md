@@ -24,7 +24,7 @@
 Pour lancer le projet il vous faux [Godot](https://godotengine.org/download) ATTENTION : Il vous faut télécharger la ``version mono``
 
 
-Ansi que ces deux modules : 
+Ainsi que ces deux modules : 
  - [OpenGL](https://microdp.com/opengl-21-gratuitement-86/)
  - [Mono](https://www.mono-project.com/download/stable/)
 
