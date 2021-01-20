@@ -1,4 +1,4 @@
-temp/
-.import/
 .mono/
 *.import
+*.DS_Store
+*.directory
