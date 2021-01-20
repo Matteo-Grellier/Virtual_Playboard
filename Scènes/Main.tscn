@@ -1,31 +1,130 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Resources/Chess_Board/chess_board_v2.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Pieces/PiecesV1/Tour.png" type="Texture" id=2]
-[ext_resource path="res://Scripts/pieces.cs" type="Script" id=3]
+[ext_resource path="res://Scripts/rook.cs" type="Script" id=3]
 [ext_resource path="res://Scripts/board.cs" type="Script" id=4]
+[ext_resource path="res://Resources/Pieces/PiecesV1/cheval.png" type="Texture" id=5]
+[ext_resource path="res://Resources/Pieces/PiecesV1/Fou.png" type="Texture" id=6]
+[ext_resource path="res://Resources/Pieces/PiecesV1/Reine.png" type="Texture" id=7]
+[ext_resource path="res://Resources/Pieces/PiecesV1/Roi.png" type="Texture" id=8]
+[ext_resource path="res://Resources/Pieces/PiecesV1/Tour_blanc.png" type="Texture" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
+[sub_resource type="RectangleShape2D" id=2]
+
+[sub_resource type="RectangleShape2D" id=3]
+
 [node name="Node2D" type="Node2D"]
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="board" type="Sprite" parent="."]
 scale = Vector2( 4, 4 )
 texture = ExtResource( 1 )
 centered = false
 script = ExtResource( 4 )
 
-[node name="FirstPieces" type="KinematicBody2D" parent="."]
+[node name="b_rook" type="KinematicBody2D" parent="."]
 position = Vector2( 32, 32 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FirstPieces"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="b_rook"]
 scale = Vector2( 3.2, 3.2 )
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="FirstPieces/CollisionShape2D"]
-scale = Vector2( 0.025, 0.02 )
+[node name="Sprite" type="Sprite" parent="b_rook/CollisionShape2D"]
+scale = Vector2( 0.02, 0.02 )
 texture = ExtResource( 2 )
+
+[node name="b_knight" type="KinematicBody2D" parent="."]
+position = Vector2( 96, 32 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="b_knight"]
+scale = Vector2( 3.2, 3.2 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="b_knight/CollisionShape2D"]
+scale = Vector2( 0.02, 0.02 )
+texture = ExtResource( 5 )
+
+[node name="b_bishop" type="KinematicBody2D" parent="."]
+position = Vector2( 160, 32 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="b_bishop"]
+scale = Vector2( 3.2, 3.2 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="b_bishop/CollisionShape2D"]
+scale = Vector2( 0.02, 0.02 )
+texture = ExtResource( 6 )
+
+[node name="b_queen" type="KinematicBody2D" parent="."]
+position = Vector2( 224, 32 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="b_queen"]
+scale = Vector2( 3.2, 3.2 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="b_queen/CollisionShape2D"]
+scale = Vector2( 0.02, 0.02 )
+texture = ExtResource( 7 )
+
+[node name="b_king" type="KinematicBody2D" parent="."]
+position = Vector2( 288, 32 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="b_king"]
+scale = Vector2( 3.2, 3.2 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="b_king/CollisionShape2D"]
+scale = Vector2( 0.02, 0.02 )
+texture = ExtResource( 8 )
+
+[node name="b_bishop2" type="KinematicBody2D" parent="."]
+position = Vector2( 352, 32 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="b_bishop2"]
+scale = Vector2( 3.2, 3.2 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="b_bishop2/CollisionShape2D"]
+scale = Vector2( 0.02, 0.02 )
+texture = ExtResource( 6 )
+
+[node name="b_knight2" type="KinematicBody2D" parent="."]
+position = Vector2( 416, 32 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="b_knight2"]
+scale = Vector2( 3.2, 3.2 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="b_knight2/CollisionShape2D"]
+scale = Vector2( 0.02, 0.02 )
+texture = ExtResource( 5 )
+
+[node name="b_rook2" type="KinematicBody2D" parent="."]
+position = Vector2( 480, 32 )
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="b_rook2"]
+scale = Vector2( 3.2, 3.2 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="b_rook2/CollisionShape2D"]
+scale = Vector2( 0.02, 0.02 )
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 32, 96 )
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2( 3.2, 3.2 )
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Area2D/CollisionShape2D"]
+scale = Vector2( 0.02, 0.02 )
+texture = ExtResource( 9 )
