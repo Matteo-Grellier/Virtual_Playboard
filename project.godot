@@ -17,7 +17,6 @@ _global_script_class_icons={
 
 config/name="Virtual_Playboard"
 run/main_scene="res://Scènes/Main.tscn"
-config/icon="res://icon.png"
 
 [display]
 
