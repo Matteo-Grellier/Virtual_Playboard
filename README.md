@@ -31,3 +31,6 @@ Ainsi que ces deux modules :
 Pour VSCode, il est conséillée de prendre les extensions :
  - ``C#`` par "Microsoft" (9,9M Downloads).
  - ``C# Tools for Godot`` par "Ignacio Roldan Etcheverry" (9K Downloads)
+
+## Liens
+ - [Trello](https://trello.com/b/ScTEPRd8)
