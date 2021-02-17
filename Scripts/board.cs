@@ -4,6 +4,8 @@ using System;
 public class board : Node
 {
 
+    public int rookBuff = 0;
+
     //pour Board()
     public int toPutX = 32;
     public int toPutY = 32;

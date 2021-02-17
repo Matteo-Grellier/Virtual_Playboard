@@ -11,7 +11,7 @@ public class pieces : KinematicBody2D
     public float mouseX;
     public float mouseY;
 
-    //pour Movement()
+    //pour Movement() 
     public int speed = 400;
     public Vector2 toMovement = new Vector2();
     public Vector2 velocity = new Vector2();
@@ -73,3 +73,4 @@ public class pieces : KinematicBody2D
     }
 
 }
+ 

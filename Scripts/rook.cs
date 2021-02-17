@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class rook : Node
+public class rook : KinematicBody2D
 {
     // Declare member variables here. Examples:
     // private int a = 2;
@@ -25,7 +25,26 @@ public class rook : Node
         // var test = Get("Node2D/position");
         // GD.Print(test);
 
-        testVec = rook.GlobalPosition;
+        // testVec = this.GlobalPosition;
+
+        // float test2 = this.GlobalPosition.x;
+        // GD.Print(testVec);
+
+        // int coucou = GetNode("KinematicBody2D").GetPositionInParent();
+        // GD.Print(coucou);
+
+        board Board = new board();
+
+
+        // float test2 = this.GlobalPosition.x;
+        // GD.Print(test2);
+        
+            rookX[Board.rookBuff] = this.GlobalPosition.x;
+            rookY[Board.rookBuff] = this.GlobalPosition.y;
+            Board.rookBuff++;
+
+        GD.Print(rookX[1], rookX[2]);
+
     }
 
     // public override void _PhysicsProcess(float delta)
@@ -34,7 +53,35 @@ public class rook : Node
     // }
 
 
+    // private void _on_Area2D_input_event(Viewport viewport, InputEvent @event, int shape_idx)
+    // {
+    //     // if (@event is InputEventMouseButton btn && btn.ButtonIndex == (int)ButtonList.Left && @event.IsPressed()) {
+    //     //     GD.Print("Clicked");
+    //     // }
 
+    //     if (@event is InputEventMouseButton) {
+    //         if (@event.IsPressed()){
+    //             GD.Print("Clicked");
+    //         }
+    //     }
+    // }
+
+    // public override void _Input(InputEvent @event) {
+        
+    //     if (@event.IsActionPressed("click"))
+    //     {
+    //         GD.Print("Ta gueule");
+    //     }
+    // } 
+
+    // private void _on_Area2D_input_event(Viewport viewport, InputEvent @event, int shape_idx) {
+        
+        
+    //     if (@event.IsActionPressed("click"))
+    //     {
+    //         GD.Print("Ta mere");
+    //     }
+    // }  
 
 
     // public void _on_Area2D_input_event() {
@@ -50,6 +97,10 @@ public class rook : Node
     //     //     GD.Print("Clicked");
     //     // }
 
+    //     // if (@event.IsActionPressed("click")) {
+    //     //             GD.Print("Clicked");
+    //     //     }
+
 
     //     if (@event is InputEventMouseButton) {
 
@@ -59,6 +110,7 @@ public class rook : Node
     //                 GD.Print("Clicked");
     //         }
     //     }
+
 
     // }
 

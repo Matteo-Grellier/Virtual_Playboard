@@ -119,12 +119,24 @@ texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( 32, 96 )
-script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2( 3.2, 3.2 )
 shape = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="Area2D/CollisionShape2D"]
+scale = Vector2( 0.02, 0.02 )
+texture = ExtResource( 9 )
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 96, 96 )
+
+[node name="w_rook2" type="KinematicBody2D" parent="Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/w_rook2"]
+scale = Vector2( 3.2, 3.2 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Node2D/w_rook2/CollisionShape2D"]
 scale = Vector2( 0.02, 0.02 )
 texture = ExtResource( 9 )
