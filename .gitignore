@@ -1,35 +1,3 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
-
-@Matteo-Grellier
-Matteo-Grellier
-/
-Virtual_Playboard
-1
-23
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-Virtual_Playboard/.gitignore
-@Matteo-Grellier
-Matteo-Grellier Update .gitignore
-Latest commit ce41a35 4 minutes ago
- History
- 2 contributors
-@Matteo-Grellier@matheoleger
-60 lines (49 sloc)  1.05 KB
-
 # This .gitignore file should be placed at the root of your Unity project directory
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
@@ -89,16 +57,3 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
-
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
