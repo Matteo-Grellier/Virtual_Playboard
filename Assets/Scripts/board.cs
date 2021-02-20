@@ -9,10 +9,10 @@ public class board : MonoBehaviour
     public int rookBuff = 0;
 
     //pour Board()
-    public int toPutX = 32;
-    public int toPutY = 32;
-    public int[] x = new int[8] { 32, 96, 160, 224, 288, 352, 416, 480 };
-    public int[] y = new int[8] { 32, 96, 160, 224, 288, 352, 416, 480 };
+    public float toPutX = 0.5f;
+    public float toPutY = 0.5f;
+    public float[] x = new float[8];
+    public float[] y = new float[8];
 
     //pour RightCoor
     public float rightX;
@@ -22,85 +22,68 @@ public class board : MonoBehaviour
 
     public float[] right = new float[2];
 
+    public Vector2 rightVec = new Vector2();
+
 
     //Pour position souris
-    public Vector2 mouseClick = new Vector2();
     public Vector3 mousePos = new Vector3();
 
 
+    //Pour faire référence on définis ces 2 "variables"
+    GameObject Pieces;
+    Rigidbody2D rb;
 
+    Vector2 position = new Vector2(0f, 0f);
+    public float moveSpeed = 0.1f;
 
+    void Start()
+    {
+        //define cases
+        x = new float[8] { 0.5f, 1.5f, 2.5f, 3.5f, 4.5f, 5.5f, 6.5f, 7.5f };
+        y = new float[8] { 0.5f, 1.5f, 2.5f, 3.5f, 4.5f, 5.5f, 6.5f, 7.5f };
 
+        
+        //Faire référence
+        Pieces = GameObject.Find("Knight_b1"); //Trouver le gameObject correspondant à Knight_b1
+        rb = Pieces.GetComponent<Rigidbody2D>(); // On prend la component de Pieces (qui est défini juste au dessus) qui est le RigidBody2D
+
+    }
     //pieces Pieces;
 
     void Update()
     {
-        /*if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("Mousedown in x =" + Input.mousePosition.x + " y = " + Input.mousePosition.y);
-
-            mouseClick = Input.mousePosition;
-
-
-            //Pieces = GameObject.Find("pieces").GetComponent<pieces>();
-            Pieces = GameObject.FindGameObjectWithTag("tagPieces").GetComponent<pieces>(); //Récupère une référence au programme pieces.cs grâce au tag "tagPieces" mis sur l'objet ayant le script
-            Pieces.ToMove(mouseClick); //Appel la fonction ToMove() se trouvant dans pieces.cs
-            
-            Debug.Log(mouseClick);
-        }*/
 
         if (Input.GetMouseButtonDown(0))
         {
-            //Debug.Log("Mousedown in x =" + Input.mousePosition.x + " y = " + Input.mousePosition.y);
-
-
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
 
             Debug.Log(mousePos);
 
-            //Pieces = GameObject.FindGameObjectWithTag("tagPieces").GetComponent<pieces>(); //Récupère une référence au programme pieces.cs grâce au tag "tagPieces" mis sur l'objet ayant le script
-
-            //while (mousePos != Pieces.transform.position)
-            //{
-                //Pieces.ToMove(mousePos); //Appel la fonction ToMove() se trouvant dans pieces.cs
-            //}
-            //Pieces = GameObject.Find("pieces").GetComponent<pieces>();
-            //Pieces = GameObject.FindGameObjectWithTag("tagPieces").GetComponent<pieces>(); //Récupère une référence au programme pieces.cs grâce au tag "tagPieces" mis sur l'objet ayant le script
-            //Pieces.ToMove(mousePos); //Appel la fonction ToMove() se trouvant dans pieces.cs
-
-            //Debug.Log(mouseClick);
+            RightCoor(mousePos.x, mousePos.y);
         }
 
-
-
-
-
-        /*Vector2 mouse = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        Ray ray;
-        ray = Camera.main.ScreenPointToRay(mouse);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, 10))
-        {
-            if (hit.point.x < transform.position.x)
-                Debug.Log("Left");
-            else
-                Debug.Log("Right");
-
-            Debug.Log(hit.point);
-        }*/
+        position = Vector2.Lerp(Pieces.transform.position, rightVec, moveSpeed); //Grâce à "Pieces.transform.position" on modifie la position pour l'objet correspondant à pieces (voir plus haut)
 
     }
 
+    void FixedUpdate()
+    {
 
-    public float[] RightCoor(float mouseX, float mouseY)
+        rb.MovePosition(position); //On utilise MovePosition (methods de RigidBody2D) à la position (voir plus haut)
+
+    }
+
+    // RightCoor() permet de trouver la case correspondant au clique de la souris. Elle return un Vector2
+    public Vector2 RightCoor(float mouseX, float mouseY)
     {
 
         for (int i = 0; i < 8; i++)
         {
+            Debug.Log("Test mouseX" + mouseX);
             verifX[i] = mouseX - x[i];
             verifY[i] = mouseY - y[i];
+            Debug.Log( "Test verifX " + verifX[i]);
         }
 
         //Debug console
@@ -133,9 +116,13 @@ public class board : MonoBehaviour
         Debug.Log(rightX);
         Debug.Log(rightY);
 
-        right[0] = rightX;
-        right[1] = rightY;
+        rightVec.x = rightX;
+        rightVec.y = rightY;
 
-        return right;
+        return rightVec;
     }
+
+
 }
+
+
