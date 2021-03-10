@@ -21,6 +21,9 @@ public class movement : MonoBehaviour
     //others
     //string nameOfElement;
 
+    //color
+    //private string previousColor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +33,8 @@ public class movement : MonoBehaviour
         KWTwo = GameObject.Find("Knight_w2");*/
 
         Board = GameObject.Find("Board");
+
+        //previousColor = "blackPieces";
     }
 
     // Update is called once per frame
@@ -48,11 +53,26 @@ public class movement : MonoBehaviour
 
         // voir si il faut mettre le nom de l'élément cliquer dans une variable et la récup dans le board
 
-        Board.GetComponent<board>().nameOfElement = (this.gameObject.name).ToString();
-        Board.GetComponent<board>().isSelectClick = true;
-        Board.GetComponent<board>().isMovable = false;
-        Board.GetComponent<board>().nameOfElementInc++;
-        Board.GetComponent<board>().ToKnowElement();
-        //Board.GetComponent<board>().isSelect = false;
+
+
+        if (Mathf.Round(Board.GetComponent<board>().position.x / 0.1f) * 0.1 == Mathf.Round(Board.GetComponent<board>().rightVec.x / 0.1f) * 0.1 && Mathf.Round(Board.GetComponent<board>().position.y / 0.1f) * 0.1 == Mathf.Round(Board.GetComponent<board>().rightVec.y / 0.1f) * 0.1)
+        {
+            Debug.Log("Ceci est un test de float et double ?" + 0.05f);
+
+            //print("ceci est la couleur précédente ou pas ? avant la condition qui verifie " + this.previousColor);
+
+                Board.GetComponent<board>().nameOfElement = (this.gameObject.name).ToString();
+                Board.GetComponent<board>().isSelectClick = true;
+                //Board.GetComponent<board>().isMovable = false;
+                Board.GetComponent<board>().nameOfElementInc++;
+                //Board.GetComponent<board>().ToKnowElement();
+                //Board.GetComponent<board>().isSelect = false;
+
+                /*this.previousColor = (this.gameObject.tag).ToString();
+                print("ceci est la couleur précédente " + previousColor);*/
+
+                Board.GetComponent<board>().tagOfElement = (this.gameObject.tag).ToString();
+            
+        }
     }
 }

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - tagPieces
   - tagBoard
+  - blackPieces
+  - whitePieces
   layers:
   - Default
   - TransparentFX

@@ -8,8 +8,10 @@ public class board : MonoBehaviour
 
     //PourDeplacement 
     public string nameOfElement;
+    public string tagOfElement;
+    public string previousColor;
     public bool isSelectClick;
-    public bool isMovable;
+    //public bool isMovable;
 
     //Others
     public int nameOfElementInc;
@@ -41,7 +43,7 @@ public class board : MonoBehaviour
     GameObject Pieces;
     Rigidbody2D rb;
 
-    Vector2 position = new Vector2(0f, 0f);
+    public Vector2 position = new Vector2(0f, 0f);
     public float moveSpeed = 0.1f;
 
     void Start()
@@ -51,8 +53,9 @@ public class board : MonoBehaviour
         y = new float[8] { 0.5f, 1.5f, 2.5f, 3.5f, 4.5f, 5.5f, 6.5f, 7.5f };
 
         nameOfElement = "empty";
-        isSelectClick = false;
-        isMovable = false;
+        isSelectClick = true;
+        previousColor = "blackPieces";
+        //isMovable = false;
 
         //Faire référence
         //Pieces = GameObject.Find(nameOfElement);//Trouver le gameObject correspondant à Unknown
@@ -62,12 +65,12 @@ public class board : MonoBehaviour
     //pieces Pieces;
 
 
-    public void ToKnowElement()
-    {
+    //public void ToKnowElement()
+    //{
 
-        Debug.Log(isSelectClick);
+        //Debug.Log(isSelectClick);
 
-        if (isSelectClick == true)
+        /*if (isSelectClick == true)
         {
             Pieces = GameObject.Find(nameOfElement);
             rb = Pieces.GetComponent<Rigidbody2D>();
@@ -80,7 +83,7 @@ public class board : MonoBehaviour
             rb = Pieces.GetComponent<Rigidbody2D>();
         }*/
         
-    }
+    //}
 
     void Update()
     {
@@ -90,7 +93,7 @@ public class board : MonoBehaviour
                 
             if (isSelectClick == false && nameOfElementInc >= 1)
             {
-                Debug.Log("Je suis un connard");
+                //Debug.Log("Je suis un connard");
             
                 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mousePos.z = 0;
@@ -106,19 +109,30 @@ public class board : MonoBehaviour
 
 
                 nameOfElementInc = 0;
-                isMovable = true;
-                ToKnowElement();
-            } else
-            {
-                isSelectClick = false;
+                //isMovable = false;
+                //ToKnowElement();
             }
+
+
+            if (isSelectClick == true && tagOfElement != previousColor)
+            {
+                Pieces = GameObject.Find(nameOfElement);
+                rb = Pieces.GetComponent<Rigidbody2D>();
+                //Debug.Log(nameOfElement);
+                Debug.Log(Pieces.gameObject.name);
+
+                isSelectClick = false;
+                previousColor = tagOfElement;
+            }
+
+
 
 
         }
 
         //isSelect = false;
 
-        if (isSelectClick == false && isMovable == true)
+        if (isSelectClick == false && nameOfElementInc == 0)
         {
             //vecteur allant de la position Pieces.tr... à rightVec par moveSpeed
             position = Vector2.Lerp(Pieces.transform.position, rightVec, moveSpeed); // Grâce à "Pieces.transform.position" on modifie la position pour l'objet correspondant à pieces (voir plus haut)
@@ -132,16 +146,17 @@ public class board : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (isSelectClick == false && isMovable == true)
+        if (isSelectClick == false && nameOfElementInc == 0)
         {
             rb.MovePosition(position); //On utilise MovePosition (methods de RigidBody2D) à la position (voir plus haut)
+
             Debug.Log(position);
             Debug.Log("is RightVEC" + rightVec);
 
-            if (position.x == rightVec.x && position.y == rightVec.y)
+            /*if (position.x == rightVec.x && position.y == rightVec.y)
             {
                 isMovable = false;
-            }
+            }*/
         }
 
         
