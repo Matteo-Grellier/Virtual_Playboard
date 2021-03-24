@@ -98,13 +98,13 @@ public class board : MonoBehaviour
                 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mousePos.z = 0;
 
-                Debug.Log("ceci est la mousePos :" + mousePos);
+                //Debug.Log("ceci est la mousePos :" + mousePos);
 
                 RightCoor(mousePos.x, mousePos.y);
 
                 //nameOfElementInc++;
                 //ToKnowElement();
-                Debug.Log(Pieces.gameObject.name);
+                //Debug.Log(Pieces.gameObject.name);
                 //isSelectClick = true;
 
 
@@ -119,7 +119,7 @@ public class board : MonoBehaviour
                 Pieces = GameObject.Find(nameOfElement);
                 rb = Pieces.GetComponent<Rigidbody2D>();
                 //Debug.Log(nameOfElement);
-                Debug.Log(Pieces.gameObject.name);
+                //Debug.Log(Pieces.gameObject.name);
 
                 isSelectClick = false;
                 previousColor = tagOfElement;
@@ -150,8 +150,8 @@ public class board : MonoBehaviour
         {
             rb.MovePosition(position); //On utilise MovePosition (methods de RigidBody2D) à la position (voir plus haut)
 
-            Debug.Log(position);
-            Debug.Log("is RightVEC" + rightVec);
+            //Debug.Log(position);
+            //Debug.Log("is RightVEC" + rightVec);
 
             /*if (position.x == rightVec.x && position.y == rightVec.y)
             {
