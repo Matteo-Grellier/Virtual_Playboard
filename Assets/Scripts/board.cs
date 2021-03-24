@@ -10,7 +10,9 @@ public class board : MonoBehaviour
     public string nameOfElement;
     public string tagOfElement;
     public string previousColor;
-    public bool isSelectClick;
+    public bool isSelectionClick;
+    public bool isSelected;
+    public bool isReadyToMove;
     //public bool isMovable;
 
     //Others
@@ -53,8 +55,10 @@ public class board : MonoBehaviour
         y = new float[8] { 0.5f, 1.5f, 2.5f, 3.5f, 4.5f, 5.5f, 6.5f, 7.5f };
 
         nameOfElement = "empty";
-        isSelectClick = true;
+        isSelectionClick = false;
         previousColor = "blackPieces";
+        isSelected = false;
+        isReadyToMove = false;
         //isMovable = false;
 
         //Faire référence
@@ -90,8 +94,8 @@ public class board : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-                
-            if (isSelectClick == false && nameOfElementInc >= 1)
+               
+            /*if (isSelectionClick == false && nameOfElementInc >= 1)
             {
                 //Debug.Log("Je suis un connard");
             
@@ -113,32 +117,61 @@ public class board : MonoBehaviour
                 //ToKnowElement();
             }
 
-
-            if (isSelectClick == true && tagOfElement != previousColor)
+            // Dans le cas où on a cliqué sur une pièce
+            if (isSelectionClick == true && tagOfElement != previousColor)
             {
                 Pieces = GameObject.Find(nameOfElement);
                 rb = Pieces.GetComponent<Rigidbody2D>();
                 //Debug.Log(nameOfElement);
                 Debug.Log(Pieces.gameObject.name);
 
-                isSelectClick = false;
+                isSelectionClick = false;
                 previousColor = tagOfElement;
+            }*/
+
+            if (isSelected == true)
+            {
+                if (isSelectionClick == true)
+                {
+                    Pieces = GameObject.Find(nameOfElement);
+                    rb = Pieces.GetComponent<Rigidbody2D>();
+                    //Debug.Log(nameOfElement);
+                    Debug.Log(Pieces.gameObject.name);
+
+                    isSelectionClick = false;
+                    isReadyToMove = false;
+                    /*previousColor = tagOfElement;*/
+                }else
+                {
+                    mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    mousePos.z = 0;
+
+                    Debug.Log("ceci est la mousePos :" + mousePos);
+
+                    RightCoor(mousePos.x, mousePos.y);
+
+                    Debug.Log(Pieces.gameObject.name);
+
+                    /*nameOfElementInc = 0;*/
+
+                    /*position = Vector2.Lerp(Pieces.transform.position, rightVec, moveSpeed);*/
+
+                    isSelected = false;
+                    isReadyToMove = true;
+                    previousColor = tagOfElement;
+                }
             }
-
-
-
 
         }
 
         //isSelect = false;
 
-        if (isSelectClick == false && nameOfElementInc == 0)
+        if (isReadyToMove == true)
         {
             //vecteur allant de la position Pieces.tr... à rightVec par moveSpeed
             position = Vector2.Lerp(Pieces.transform.position, rightVec, moveSpeed); // Grâce à "Pieces.transform.position" on modifie la position pour l'objet correspondant à pieces (voir plus haut)
+            Debug.Log(position);
         }
-
-
 
 
     }
@@ -146,20 +179,41 @@ public class board : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (isSelectClick == false && nameOfElementInc == 0)
+        /*        if (isSelectionClick == false && nameOfElementInc == 0)
+                {
+                    rb.MovePosition(position); //On utilise MovePosition (methods de RigidBody2D) à la position (voir plus haut)
+
+                    Debug.Log(position);
+                    Debug.Log("is RightVEC" + rightVec);
+
+                    *//*if (position.x == rightVec.x && position.y == rightVec.y)
+                    {
+                        isMovable = false;
+                    }*//*
+                }*/
+
+        if (isReadyToMove == true)
         {
             rb.MovePosition(position); //On utilise MovePosition (methods de RigidBody2D) à la position (voir plus haut)
 
-            Debug.Log(position);
-            Debug.Log("is RightVEC" + rightVec);
+            /*Debug.Log(position);
+            Debug.Log("is RightVEC" + rightVec);*/
 
             /*if (position.x == rightVec.x && position.y == rightVec.y)
             {
-                isMovable = false;
+                //isMovable = false;
             }*/
+
+
+            /*if (rb.position.x == rightVec.x && rb.position.y == rightVec.y)
+            {
+                //isMovable = false;
+                isReadyToMove = false;
+            }*/
+    
         }
 
-        
+
 
     }
 
