@@ -10,7 +10,7 @@ public class fou : MonoBehaviour
     GameObject bishop;
     // Start is called before the first frame update
     void Start()
-    {
+	{
         bishop = GameObject.Find("bishop_w2");
 
         bishop.GetComponent<board>().rightVec.x = 2;
