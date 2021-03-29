@@ -73,6 +73,19 @@ public class movement : MonoBehaviour
                 Board.GetComponent<board>().nameOfElement = (this.gameObject.name).ToString();
             }
 
+            //==================================================================================================================================
+            //        à partir d'ici, plus rien n'est safe, bisou (o3o),
+            //                                                              johnbibi.
+            //==================================================================================================================================
+
+            else if (Board.GetComponent<board>().isSelected == true && (this.gameObject.tag).ToString() != Board.GetComponent<board>().previousColor && Board.GetComponent<board>().isSelectClick == false)
+            {
+                Board.GetComponent<board>().isKilling = true;
+                Board.GetComponent<board>().nameToKill = (this.gameObject.tag).ToString();
+                Board.GetComponent<board>().tagToKill = (this.gameObject.name).ToString();
+
+            }
+
 
             //Board.GetComponent<board>().nameOfElementInc++;
 

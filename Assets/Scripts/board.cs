@@ -13,6 +13,13 @@ public class board : MonoBehaviour
     public bool isSelectionClick;
     public bool isSelected;
     public bool isReadyToMove;
+    //=================================================================johnbibi was here
+    public bool isKilling;
+    public string tagToKill;
+    public string nameToKill;
+    public Vector2 toDeathPosition = new Vector2(0f, 0f);
+    GameObject PiecesToKill;
+    Rigidbody2D rbKill;
     //public bool isMovable;
 
     //Others
@@ -59,6 +66,10 @@ public class board : MonoBehaviour
         previousColor = "blackPieces";
         isSelected = false;
         isReadyToMove = false;
+        //=================================================================johnbibi was here
+        isKilling = false;
+        tagToKill = "empty";
+        nameToKill = "empty";
         //isMovable = false;
 
         //Faire référence
@@ -159,12 +170,26 @@ public class board : MonoBehaviour
                     isSelected = false;
                     isReadyToMove = true;
                     previousColor = tagOfElement;
+
+                    //==================================================================================================================================
+                    //        à partir d'ici, plus rien n'est safe, bisou (o3o)
+                    //                                                              johnbibi.
+                    //==================================================================================================================================
+
+                    if (isKilling == true) 
+                    {
+                        PiecesToKill = GameObject.Find(nameToKill);
+                        rbKill = PiecesToKill.GetComponent<Rigidbody2D>();
+                        toDeathPosition = Vector2.Lerp(PiecesToKill.transform.position, rightVec, moveSpeed);
+                        Debug.Log(toDeathPosition);
+                    }
                 }
             }
 
         }
 
         //isSelect = false;
+
 
         if (isReadyToMove == true)
         {
@@ -211,6 +236,16 @@ public class board : MonoBehaviour
                 isReadyToMove = false;
             }*/
     
+        }
+
+        //==================================================================================================================================
+        //        à partir d'ici, plus rien n'est safe, bisou (o3o)
+        //                                                              johnbibi.
+        //==================================================================================================================================
+
+        if (isKilling == true)
+        {
+            rb.MovePosition(position);
         }
 
 
