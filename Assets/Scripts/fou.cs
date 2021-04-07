@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-
 public class fou : MonoBehaviour
 {
     GameObject bishop;
@@ -20,6 +17,5 @@ public class fou : MonoBehaviour
 
     void Update()
     {
-
     }
 }

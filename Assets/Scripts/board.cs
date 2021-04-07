@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class board : MonoBehaviour
 {
-
-    //PourDeplacement 
+    //PourDeplacement
     public string nameOfElement;
     public string tagOfElement;
     public string previousColor;
@@ -17,7 +16,7 @@ public class board : MonoBehaviour
 
     //Others
     public int nameOfElementInc;
-    
+
     public int rookBuff = 0;
 
     //pour Board()
@@ -36,10 +35,8 @@ public class board : MonoBehaviour
 
     public Vector2 rightVec = new Vector2();
 
-
     //Pour position souris
     public Vector3 mousePos = new Vector3();
-
 
     //Pour faire référence on définis ces 2 "variables"
     GameObject Pieces;
@@ -64,14 +61,11 @@ public class board : MonoBehaviour
         //Faire référence
         //Pieces = GameObject.Find(nameOfElement);//Trouver le gameObject correspondant à Unknown
         //rb = Pieces.GetComponent<Rigidbody2D>(); // On prend la component de Pieces (qui est défini juste au dessus) qui est le RigidBody2D
-
     }
     //pieces Pieces;
 
-
     //public void ToKnowElement()
     //{
-
         //Debug.Log(isSelectClick);
 
         /*if (isSelectClick == true)
@@ -86,19 +80,17 @@ public class board : MonoBehaviour
             Pieces = GameObject.Find(nameOfElement);
             rb = Pieces.GetComponent<Rigidbody2D>();
         }*/
-        
+
     //}
 
     void Update()
     {
-
         if (Input.GetMouseButtonDown(0))
         {
-               
             /*if (isSelectionClick == false && nameOfElementInc >= 1)
             {
                 //Debug.Log("Je suis un connard");
-            
+
                 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mousePos.z = 0;
 
@@ -110,7 +102,6 @@ public class board : MonoBehaviour
                 //ToKnowElement();
                 Debug.Log(Pieces.gameObject.name);
                 //isSelectClick = true;
-
 
                 nameOfElementInc = 0;
                 //isMovable = false;
@@ -161,7 +152,6 @@ public class board : MonoBehaviour
                     previousColor = tagOfElement;
                 }
             }
-
         }
 
         //isSelect = false;
@@ -172,13 +162,10 @@ public class board : MonoBehaviour
             position = Vector2.Lerp(Pieces.transform.position, rightVec, moveSpeed); // Grâce à "Pieces.transform.position" on modifie la position pour l'objet correspondant à pieces (voir plus haut)
             Debug.Log(position);
         }
-
-
     }
 
     void FixedUpdate()
     {
-
         /*        if (isSelectionClick == false && nameOfElementInc == 0)
                 {
                     rb.MovePosition(position); //On utilise MovePosition (methods de RigidBody2D) à la position (voir plus haut)
@@ -204,23 +191,17 @@ public class board : MonoBehaviour
                 //isMovable = false;
             }*/
 
-
             /*if (rb.position.x == rightVec.x && rb.position.y == rightVec.y)
             {
                 //isMovable = false;
                 isReadyToMove = false;
             }*/
-    
         }
-
-
-
     }
 
     // RightCoor() permet de trouver la case correspondant au clique de la souris. Elle return un Vector2
     public Vector2 RightCoor(float mouseX, float mouseY)
     {
-
         for (int i = 0; i < 8; i++)
         {
             //Debug.Log("Test mouseX" + mouseX);
@@ -236,10 +217,8 @@ public class board : MonoBehaviour
         float previousX = verifX[0];
         float previousY = verifY[0];
 
-
         for (int i = 0; i < 8; i++)
         {
-
             // valeur la plus proche de zéro (car il y a une soustraction dans la partie d'avant)
             if (Math.Abs(previousX) > Math.Abs(verifX[i]) || Math.Abs(previousX) == Math.Abs(verifX[i]))
             {
@@ -252,7 +231,6 @@ public class board : MonoBehaviour
                 previousY = verifY[i];
                 rightY = y[i];
             }
-
         }
 
         //Debug concole
@@ -264,8 +242,4 @@ public class board : MonoBehaviour
 
         return rightVec;
     }
-
-
 }
-
-
