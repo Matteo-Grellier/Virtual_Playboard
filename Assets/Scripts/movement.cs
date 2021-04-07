@@ -78,7 +78,7 @@ public class movement : MonoBehaviour
             //                                                              johnbibi.
             //==================================================================================================================================
 
-            else if (Board.GetComponent<board>().isSelected == true && (this.gameObject.tag).ToString() != Board.GetComponent<board>().previousColor && Board.GetComponent<board>().isSelectClick == false)
+            else if (Board.GetComponent<board>().isSelected == true && (this.gameObject.tag).ToString() != Board.GetComponent<board>().previousColor && Board.GetComponent<board>().isSelectionClick == false)
             {
                 Board.GetComponent<board>().isKilling = true;
                 Board.GetComponent<board>().nameToKill = (this.gameObject.tag).ToString();
