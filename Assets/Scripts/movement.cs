@@ -5,18 +5,18 @@ using UnityEngine;
 public class movement : MonoBehaviour
 {
     //Reference
-    GameObject KBOne;
+    /*GameObject KBOne;
     GameObject KBTwo;
     GameObject KWOne;
-    GameObject KWTwo;
+    GameObject KWTwo;*/
 
     GameObject Board;
 
     //Coordinates
-    Vector2 kbOPos = new Vector2();
+/*    Vector2 kbOPos = new Vector2();
     Vector2 kbTPos = new Vector2();
     Vector2 kwOPos = new Vector2();
-    Vector2 kwTPos = new Vector2();
+    Vector2 kwTPos = new Vector2();*/
 
     //others
     //string nameOfElement;
@@ -62,6 +62,7 @@ public class movement : MonoBehaviour
 
             if (Board.GetComponent<board>().isSelected == false && (this.gameObject.tag).ToString() != Board.GetComponent<board>().previousColor)
             {
+                Debug.Log("isSelected = false and color != previousColor");
                 Board.GetComponent<board>().tagOfElement = (this.gameObject.tag).ToString();
                 Board.GetComponent<board>().isSelected = true;
                 Board.GetComponent<board>().isSelectionClick = true;
@@ -69,6 +70,7 @@ public class movement : MonoBehaviour
 
             } else if (Board.GetComponent<board>().isSelected == true && (this.gameObject.tag).ToString() != Board.GetComponent<board>().previousColor)
             {
+                Debug.Log("isSelected = true and color != previousColor");
                 Board.GetComponent<board>().isSelectionClick = true;
                 Board.GetComponent<board>().nameOfElement = (this.gameObject.name).ToString();
             }
@@ -77,7 +79,7 @@ public class movement : MonoBehaviour
             //Board.GetComponent<board>().nameOfElementInc++;
 
             //Board.GetComponent<board>().isMovable = false;
-            
+
             //Board.GetComponent<board>().ToKnowElement();
             //Board.GetComponent<board>().isSelect = false;
 
