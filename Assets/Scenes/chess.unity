@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 5728935}
   - component: {fileID: 5728934}
   - component: {fileID: 5728936}
+  - component: {fileID: 5728937}
   m_Layer: 0
   m_Name: Knight_b1
   m_TagString: blackPieces
@@ -264,6 +265,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10, y: 10}
   m_EdgeRadius: 0
+--- !u!114 &5728937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5728931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01fd8ddbe6f556347a61ed5b6555c5e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &22555898
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,6 +373,7 @@ GameObject:
   - component: {fileID: 159368412}
   - component: {fileID: 159368411}
   - component: {fileID: 159368415}
+  - component: {fileID: 159368416}
   m_Layer: 0
   m_Name: Knight_w2
   m_TagString: whitePieces
@@ -490,6 +504,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10, y: 10}
   m_EdgeRadius: 0
+--- !u!114 &159368416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159368410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01fd8ddbe6f556347a61ed5b6555c5e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &233761741
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,7 +529,6 @@ GameObject:
   - component: {fileID: 233761744}
   - component: {fileID: 233761743}
   - component: {fileID: 233761742}
-  - component: {fileID: 233761747}
   m_Layer: 0
   m_Name: bishop_w2
   m_TagString: whitePieces
@@ -634,18 +659,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &233761747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 233761741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04df9c4f77a79234fb11f3e0a1e36d2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &251930242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,6 +1244,7 @@ GameObject:
   - component: {fileID: 476267211}
   - component: {fileID: 476267210}
   - component: {fileID: 476267214}
+  - component: {fileID: 476267215}
   m_Layer: 0
   m_Name: Knight_b2
   m_TagString: blackPieces
@@ -1361,6 +1375,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10, y: 10}
   m_EdgeRadius: 0
+--- !u!114 &476267215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476267209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01fd8ddbe6f556347a61ed5b6555c5e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &550035723
 GameObject:
   m_ObjectHideFlags: 0
@@ -2602,7 +2628,10 @@ MonoBehaviour:
   nameOfElement: Knight_b1
   tagOfElement: 
   previousColor: 
-  isSelectClick: 0
+  isSelectionClick: 0
+  isSelected: 0
+  isReadyToMove: 0
+  isRightPos: 0
   nameOfElementInc: 0
   rookBuff: 0
   toPutX: 32
@@ -2935,6 +2964,7 @@ GameObject:
   - component: {fileID: 1269467460}
   - component: {fileID: 1269467459}
   - component: {fileID: 1269467463}
+  - component: {fileID: 1269467464}
   m_Layer: 0
   m_Name: Knight_w1
   m_TagString: whitePieces
@@ -3065,6 +3095,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10, y: 10}
   m_EdgeRadius: 0
+--- !u!114 &1269467464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269467458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01fd8ddbe6f556347a61ed5b6555c5e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1729878839
 GameObject:
   m_ObjectHideFlags: 0
