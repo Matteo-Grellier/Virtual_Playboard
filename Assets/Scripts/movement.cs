@@ -49,12 +49,22 @@ public class movement : MonoBehaviour
 
     void OnMouseDown()
     {
+        double positionOfPreviousPieceX = Mathf.Round(Board.GetComponent<board>().position.x / 0.1f) * 0.1;
+        double positionOfPreviousPieceY = Mathf.Round(Board.GetComponent<board>().position.y / 0.1f) * 0.1;
+        double rightVecX = Mathf.Round(Board.GetComponent<board>().rightVec.x / 0.1f) * 0.1;
+        double rightVecY = Mathf.Round(Board.GetComponent<board>().rightVec.y / 0.1f) * 0.1;
+        //Debug.Log("positionOfPreviousPiecesX" + positionOfPreviousPieceX);
+        //Debug.Log("rightVecX" + rightVecX);
+        //Debug.Log(rightVecX == positionOfPreviousPieceX);
+
+        bool isRightPos = Board.GetComponent<board>().isRightPos;
+
         //Debug.Log("quand je OnMousDown " + kbOPos);
 
         // voir si il faut mettre le nom de l'élément cliquer dans une variable et la récup dans le board
 
 
-        if (Mathf.Round(Board.GetComponent<board>().position.x / 0.1f) * 0.1 == Mathf.Round(Board.GetComponent<board>().rightVec.x / 0.1f) * 0.1 && Mathf.Round(Board.GetComponent<board>().position.y / 0.1f) * 0.1 == Mathf.Round(Board.GetComponent<board>().rightVec.y / 0.1f) * 0.1)
+        if ((positionOfPreviousPieceX == rightVecX && positionOfPreviousPieceY == rightVecY) || isRightPos == false)
         {
             Debug.Log("Ceci est un test de float et double ?" + 0.05f);
 
