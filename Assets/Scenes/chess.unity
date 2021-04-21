@@ -672,6 +672,7 @@ GameObject:
   - component: {fileID: 251930245}
   - component: {fileID: 251930244}
   - component: {fileID: 251930243}
+  - component: {fileID: 251930248}
   m_Layer: 0
   m_Name: pawn_b (2)
   m_TagString: blackPieces
@@ -802,6 +803,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &251930248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251930242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00d4fdf626fc23340b1d5dc3caeec685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &290015577
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,6 +828,7 @@ GameObject:
   - component: {fileID: 290015580}
   - component: {fileID: 290015579}
   - component: {fileID: 290015578}
+  - component: {fileID: 290015583}
   m_Layer: 0
   m_Name: pawn_w (3)
   m_TagString: whitePieces
@@ -945,6 +959,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &290015583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290015577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00d4fdf626fc23340b1d5dc3caeec685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &301498976
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,6 +1127,7 @@ GameObject:
   - component: {fileID: 340384112}
   - component: {fileID: 340384111}
   - component: {fileID: 340384110}
+  - component: {fileID: 340384115}
   m_Layer: 0
   m_Name: pawn_w (2)
   m_TagString: whitePieces
@@ -1231,6 +1258,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &340384115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340384109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00d4fdf626fc23340b1d5dc3caeec685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &476267209
 GameObject:
   m_ObjectHideFlags: 0
@@ -2401,6 +2440,7 @@ GameObject:
   - component: {fileID: 941279811}
   - component: {fileID: 941279810}
   - component: {fileID: 941279809}
+  - component: {fileID: 941279814}
   m_Layer: 0
   m_Name: pawn_b (1)
   m_TagString: blackPieces
@@ -2531,6 +2571,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &941279814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941279808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00d4fdf626fc23340b1d5dc3caeec685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1041972949
 GameObject:
   m_ObjectHideFlags: 0
@@ -2821,6 +2873,7 @@ GameObject:
   - component: {fileID: 1241754851}
   - component: {fileID: 1241754850}
   - component: {fileID: 1241754849}
+  - component: {fileID: 1241754854}
   m_Layer: 0
   m_Name: pawn_w (1)
   m_TagString: whitePieces
@@ -2951,6 +3004,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1241754854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241754848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00d4fdf626fc23340b1d5dc3caeec685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1269467458
 GameObject:
   m_ObjectHideFlags: 0
@@ -3406,6 +3471,7 @@ GameObject:
   - component: {fileID: 2065173658}
   - component: {fileID: 2065173657}
   - component: {fileID: 2065173656}
+  - component: {fileID: 2065173661}
   m_Layer: 0
   m_Name: pawn_b (3)
   m_TagString: blackPieces
@@ -3536,3 +3602,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2065173661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065173655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00d4fdf626fc23340b1d5dc3caeec685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
