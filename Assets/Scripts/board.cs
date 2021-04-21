@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEditor;
 
 public class board : MonoBehaviour
 {
@@ -13,13 +14,7 @@ public class board : MonoBehaviour
     public bool isSelectionClick;
     public bool isSelected;
     public bool isReadyToMove;
-    //=================================================================johnbibi was here
-    public bool isKilling;
-    public string tagToKill;
-    public string nameToKill;
-    public Vector2 toDeathPosition = new Vector2(0f, 0f);
-    GameObject PiecesToKill;
-    Rigidbody2D rbKill;
+    public bool isRightPos;
     //public bool isMovable;
 
     //Others
@@ -51,6 +46,9 @@ public class board : MonoBehaviour
     //Pour faire référence on définis ces 2 "variables"
     GameObject Pieces;
     Rigidbody2D rb;
+    //public knight knight;
+    //Type NameOfClass;
+    //public knight knight;
 
     public Vector2 position = new Vector2(0f, 0f);
     public float moveSpeed = 0.1f;
@@ -66,10 +64,6 @@ public class board : MonoBehaviour
         previousColor = "blackPieces";
         isSelected = false;
         isReadyToMove = false;
-        //=================================================================johnbibi was here
-        isKilling = false;
-        tagToKill = "empty";
-        nameToKill = "empty";
         //isMovable = false;
 
         //Faire référence
@@ -161,28 +155,46 @@ public class board : MonoBehaviour
 
                     RightCoor(mousePos.x, mousePos.y);
 
-                    Debug.Log(Pieces.gameObject.name);
+                    Debug.Log("du else: " + Pieces.gameObject.name);
 
                     /*nameOfElementInc = 0;*/
 
                     /*position = Vector2.Lerp(Pieces.transform.position, rightVec, moveSpeed);*/
 
-                    isSelected = false;
-                    isReadyToMove = true;
-                    previousColor = tagOfElement;
+                    //Pieces = GameObject.Find(nameOfElement);
 
-                    //==================================================================================================================================
-                    //        à partir d'ici, plus rien n'est safe, bisou (o3o)
-                    //                                                              johnbibi.
-                    //==================================================================================================================================
+                    /*Type NameOfClass = Pieces.GetType();*/
+                    //var coucou = ObjectNames.GetClassName(Pieces);
+                    //Debug.Log("class ? " + coucou);
+                    //nameOfClass script = Pieces.GetComponent(nameOfClass);
 
-                    if (isKilling == true) 
+
+                    //Pieces = GameObject.Find(nameOfElement);                  //il faut peut etre le réactiver
+                    Debug.Log("du else: " + Pieces.gameObject.name);
+                    Debug.Log("previousCOlor: " + previousColor);
+                    isRightPos = TypeOfPieces(Pieces.gameObject.name);
+
+                    /*Type NameOfClass = Pieces.GetType();
+                    Pieces.GetComponent<knight>().IsRightChessBox();*/
+                    //knight.IsRightChessBox();
+                    //NameOfClass Pieces.GetComponent(NameOfClass).IsRightChessBox();
+
+                    /*var testVar = Pieces.GetComponent(NameOfClass);
+                    testVar.IsRightChessBox();*/
+
+                    if (isRightPos == true)
                     {
-                        PiecesToKill = GameObject.Find(nameToKill);
-                        rbKill = PiecesToKill.GetComponent<Rigidbody2D>();
-                        toDeathPosition = Vector2.Lerp(PiecesToKill.transform.position, rightVec, moveSpeed);
-                        Debug.Log(toDeathPosition);
-                    }
+                        isSelected = false;
+                        previousColor = tagOfElement;
+                        isReadyToMove = true;
+                    } /*else
+                    {
+                        isSelected = true;
+                        isReadyToMove = false;
+                    }*/
+
+                    Debug.Log("incompréhension / 20");
+
                 }
             }
 
@@ -190,12 +202,17 @@ public class board : MonoBehaviour
 
         //isSelect = false;
 
-
-        if (isReadyToMove == true)
+        if (isReadyToMove == true && isRightPos == true)
         {
+
+            //if ()
+            //{
+
+            //}
+
             //vecteur allant de la position Pieces.tr... à rightVec par moveSpeed
             position = Vector2.Lerp(Pieces.transform.position, rightVec, moveSpeed); // Grâce à "Pieces.transform.position" on modifie la position pour l'objet correspondant à pieces (voir plus haut)
-            Debug.Log(position);
+            //Debug.Log(position);
         }
 
 
@@ -217,7 +234,7 @@ public class board : MonoBehaviour
                     }*//*
                 }*/
 
-        if (isReadyToMove == true)
+        if (isReadyToMove == true && isRightPos == true)
         {
             rb.MovePosition(position); //On utilise MovePosition (methods de RigidBody2D) à la position (voir plus haut)
 
@@ -236,16 +253,6 @@ public class board : MonoBehaviour
                 isReadyToMove = false;
             }*/
     
-        }
-
-        //==================================================================================================================================
-        //        à partir d'ici, plus rien n'est safe, bisou (o3o)
-        //                                                              johnbibi.
-        //==================================================================================================================================
-
-        if (isKilling == true)
-        {
-            rb.MovePosition(position);
         }
 
 
@@ -298,6 +305,44 @@ public class board : MonoBehaviour
         rightVec.y = rightY;
 
         return rightVec;
+    }
+
+
+    public bool TypeOfPieces(string name)
+    {
+
+        if (name.ToLower().Split('_')[0] == "knight")
+        {
+            return Pieces.GetComponent<knight>().IsRightChessBox(rb.position, rightVec);
+
+        } else if (name.ToLower().Split('_')[0] == "bishop")
+        {
+            return true; // remplacer par une ligne comme ci-dessus
+
+        } else if (name.ToLower().Split('_')[0] == "rook")
+        {
+            return true; // remplacer par une ligne comme ci-dessus
+
+        } else if (name.ToLower().Split('_')[0] == "queen")
+        {
+            return true; // remplacer par une ligne comme ci-dessus
+
+        } else if (name.ToLower().Split('_')[0] == "king")
+        {
+            return true; // remplacer par une ligne comme ci-dessus
+
+        } else if (name.ToLower().Split('_')[0] == "pawn")
+        {
+            //return true; // remplacer par une ligne comme ci-dessus
+
+            return Pieces.GetComponent<pawn>().IsRightChessBox(rb.position, rightVec);
+
+        } else
+        {
+            return true;
+        }
+
+        //return true;
     }
 
 

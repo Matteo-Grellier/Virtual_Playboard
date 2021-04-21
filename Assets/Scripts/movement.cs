@@ -5,18 +5,18 @@ using UnityEngine;
 public class movement : MonoBehaviour
 {
     //Reference
-    GameObject KBOne;
+    /*GameObject KBOne;
     GameObject KBTwo;
     GameObject KWOne;
-    GameObject KWTwo;
+    GameObject KWTwo;*/
 
     GameObject Board;
 
     //Coordinates
-    Vector2 kbOPos = new Vector2();
+/*    Vector2 kbOPos = new Vector2();
     Vector2 kbTPos = new Vector2();
     Vector2 kwOPos = new Vector2();
-    Vector2 kwTPos = new Vector2();
+    Vector2 kwTPos = new Vector2();*/
 
     //others
     //string nameOfElement;
@@ -49,12 +49,22 @@ public class movement : MonoBehaviour
 
     void OnMouseDown()
     {
+        double positionOfPreviousPieceX = Mathf.Round(Board.GetComponent<board>().position.x / 0.1f) * 0.1;
+        double positionOfPreviousPieceY = Mathf.Round(Board.GetComponent<board>().position.y / 0.1f) * 0.1;
+        double rightVecX = Mathf.Round(Board.GetComponent<board>().rightVec.x / 0.1f) * 0.1;
+        double rightVecY = Mathf.Round(Board.GetComponent<board>().rightVec.y / 0.1f) * 0.1;
+        //Debug.Log("positionOfPreviousPiecesX" + positionOfPreviousPieceX);
+        //Debug.Log("rightVecX" + rightVecX);
+        //Debug.Log(rightVecX == positionOfPreviousPieceX);
+
+        bool isRightPos = Board.GetComponent<board>().isRightPos;
+
         //Debug.Log("quand je OnMousDown " + kbOPos);
 
         // voir si il faut mettre le nom de l'élément cliquer dans une variable et la récup dans le board
 
 
-        if (Mathf.Round(Board.GetComponent<board>().position.x / 0.1f) * 0.1 == Mathf.Round(Board.GetComponent<board>().rightVec.x / 0.1f) * 0.1 && Mathf.Round(Board.GetComponent<board>().position.y / 0.1f) * 0.1 == Mathf.Round(Board.GetComponent<board>().rightVec.y / 0.1f) * 0.1)
+        if ((positionOfPreviousPieceX == rightVecX && positionOfPreviousPieceY == rightVecY) || isRightPos == false)
         {
             Debug.Log("Ceci est un test de float et double ?" + 0.05f);
 
@@ -62,6 +72,7 @@ public class movement : MonoBehaviour
 
             if (Board.GetComponent<board>().isSelected == false && (this.gameObject.tag).ToString() != Board.GetComponent<board>().previousColor)
             {
+                Debug.Log("isSelected = false and color != previousColor");
                 Board.GetComponent<board>().tagOfElement = (this.gameObject.tag).ToString();
                 Board.GetComponent<board>().isSelected = true;
                 Board.GetComponent<board>().isSelectionClick = true;
@@ -69,28 +80,16 @@ public class movement : MonoBehaviour
 
             } else if (Board.GetComponent<board>().isSelected == true && (this.gameObject.tag).ToString() != Board.GetComponent<board>().previousColor)
             {
+                Debug.Log("isSelected = true and color != previousColor");
                 Board.GetComponent<board>().isSelectionClick = true;
                 Board.GetComponent<board>().nameOfElement = (this.gameObject.name).ToString();
-            }
-
-            //==================================================================================================================================
-            //        à partir d'ici, plus rien n'est safe, bisou (o3o),
-            //                                                              johnbibi.
-            //==================================================================================================================================
-
-            else if (Board.GetComponent<board>().isSelected == true && (this.gameObject.tag).ToString() != Board.GetComponent<board>().previousColor && Board.GetComponent<board>().isSelectionClick == false)
-            {
-                Board.GetComponent<board>().isKilling = true;
-                Board.GetComponent<board>().nameToKill = (this.gameObject.tag).ToString();
-                Board.GetComponent<board>().tagToKill = (this.gameObject.name).ToString();
-
             }
 
 
             //Board.GetComponent<board>().nameOfElementInc++;
 
             //Board.GetComponent<board>().isMovable = false;
-            
+
             //Board.GetComponent<board>().ToKnowElement();
             //Board.GetComponent<board>().isSelect = false;
 
