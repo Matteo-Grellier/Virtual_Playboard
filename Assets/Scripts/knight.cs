@@ -55,7 +55,7 @@ public class knight : MonoBehaviour
         }
 
         /*Debug.Log(reqPos + " " + initPos);*/
-        Debug.Log("Hello les gens");
+        //Debug.Log("Hello les gens");
         
     }
 }

@@ -204,6 +204,12 @@ public class board : MonoBehaviour
 
         if (isReadyToMove == true && isRightPos == true)
         {
+
+            //if ()
+            //{
+
+            //}
+
             //vecteur allant de la position Pieces.tr... à rightVec par moveSpeed
             position = Vector2.Lerp(Pieces.transform.position, rightVec, moveSpeed); // Grâce à "Pieces.transform.position" on modifie la position pour l'objet correspondant à pieces (voir plus haut)
             //Debug.Log(position);
@@ -327,7 +333,10 @@ public class board : MonoBehaviour
 
         } else if (name.ToLower().Split('_')[0] == "pawn")
         {
-            return true; // remplacer par une ligne comme ci-dessus
+            //return true; // remplacer par une ligne comme ci-dessus
+
+            return Pieces.GetComponent<pawn>().IsRightChessBox(rb.position, rightVec);
+
         } else
         {
             return true;
