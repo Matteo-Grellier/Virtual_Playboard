@@ -317,7 +317,7 @@ public class board : MonoBehaviour
 
         } else if (name.ToLower().Split('_')[0] == "bishop")
         {
-            return true; // remplacer par une ligne comme ci-dessus
+            return Pieces.GetComponent<bishop>().IsRightChessBox(rb.position, rightVec);
 
         } else if (name.ToLower().Split('_')[0] == "rook")
         {
@@ -329,7 +329,7 @@ public class board : MonoBehaviour
 
         } else if (name.ToLower().Split('_')[0] == "king")
         {
-            return true; // remplacer par une ligne comme ci-dessus
+            return Pieces.GetComponent<king>().IsRightChessBox(rb.position, rightVec);
 
         } else if (name.ToLower().Split('_')[0] == "pawn")
         {
