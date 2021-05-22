@@ -27,6 +27,7 @@ public class board : MonoBehaviour
     public float toPutY = 0.5f;
     public float[] x = new float[8];
     public float[] y = new float[8];
+    public float[] actualPositionsOfPieces = new float[32];
 
     //pour RightCoor
     public float rightX;
@@ -65,6 +66,11 @@ public class board : MonoBehaviour
         isSelected = false;
         isReadyToMove = false;
         //isMovable = false;
+
+
+        GameObject.FindGameObjectsWithTag("whitePieces");
+
+
 
         //Faire référence
         //Pieces = GameObject.Find(nameOfElement);//Trouver le gameObject correspondant à Unknown
