@@ -529,6 +529,7 @@ GameObject:
   - component: {fileID: 233761744}
   - component: {fileID: 233761743}
   - component: {fileID: 233761742}
+  - component: {fileID: 233761747}
   m_Layer: 0
   m_Name: bishop_w2
   m_TagString: whitePieces
@@ -659,6 +660,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &233761747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233761741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53997cc19a83b9a45a54e31e806f920d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &251930242
 GameObject:
   m_ObjectHideFlags: 0
@@ -984,6 +997,7 @@ GameObject:
   - component: {fileID: 301498979}
   - component: {fileID: 301498978}
   - component: {fileID: 301498977}
+  - component: {fileID: 301498982}
   m_Layer: 0
   m_Name: queen_w
   m_TagString: whitePieces
@@ -1114,6 +1128,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &301498982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301498976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84fe282e94d382848ae4b576b7cfbe99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &340384109
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,6 +1465,7 @@ GameObject:
   - component: {fileID: 550035726}
   - component: {fileID: 550035725}
   - component: {fileID: 550035724}
+  - component: {fileID: 550035729}
   m_Layer: 0
   m_Name: bishop_b1
   m_TagString: blackPieces
@@ -1569,6 +1596,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &550035729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550035723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53997cc19a83b9a45a54e31e806f920d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &600641707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1582,6 +1621,7 @@ GameObject:
   - component: {fileID: 600641710}
   - component: {fileID: 600641709}
   - component: {fileID: 600641708}
+  - component: {fileID: 600641713}
   m_Layer: 0
   m_Name: queen_b
   m_TagString: blackPieces
@@ -1712,6 +1752,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &600641713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600641707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84fe282e94d382848ae4b576b7cfbe99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &639433949
 GameObject:
   m_ObjectHideFlags: 0
@@ -1725,6 +1777,7 @@ GameObject:
   - component: {fileID: 639433952}
   - component: {fileID: 639433951}
   - component: {fileID: 639433950}
+  - component: {fileID: 639433955}
   m_Layer: 0
   m_Name: bishop_b2
   m_TagString: blackPieces
@@ -1855,6 +1908,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &639433955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639433949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53997cc19a83b9a45a54e31e806f920d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &671460777
 GameObject:
   m_ObjectHideFlags: 0
@@ -1868,6 +1933,7 @@ GameObject:
   - component: {fileID: 671460780}
   - component: {fileID: 671460779}
   - component: {fileID: 671460778}
+  - component: {fileID: 671460783}
   m_Layer: 0
   m_Name: bishop_w1
   m_TagString: whitePieces
@@ -1998,6 +2064,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &671460783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671460777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53997cc19a83b9a45a54e31e806f920d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &757114546
 GameObject:
   m_ObjectHideFlags: 0
@@ -2011,6 +2089,7 @@ GameObject:
   - component: {fileID: 757114549}
   - component: {fileID: 757114548}
   - component: {fileID: 757114547}
+  - component: {fileID: 757114552}
   m_Layer: 0
   m_Name: king_w
   m_TagString: whitePieces
@@ -2141,6 +2220,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &757114552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757114546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6abf86c7c382ad4f971810cca0d725f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &887177088
 GameObject:
   m_ObjectHideFlags: 0
@@ -2154,6 +2245,7 @@ GameObject:
   - component: {fileID: 887177091}
   - component: {fileID: 887177090}
   - component: {fileID: 887177089}
+  - component: {fileID: 887177094}
   m_Layer: 0
   m_Name: king_b
   m_TagString: blackPieces
@@ -2284,6 +2376,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &887177094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887177088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6abf86c7c382ad4f971810cca0d725f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &907726607
 GameObject:
   m_ObjectHideFlags: 0

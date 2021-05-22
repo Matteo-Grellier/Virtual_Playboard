@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class bishop : MonoBehaviour
+public class queen : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -23,12 +23,17 @@ public class bishop : MonoBehaviour
         double testXPos = Math.Round(initPos.x, 1) - Math.Round(reqPos.x, 1);
         double testYPos = Math.Round(initPos.y, 1) - Math.Round(reqPos.y, 1);
 
-        if (Math.Abs(testXPos) == Math.Abs(testYPos))
+        if ((Math.Round(initPos.y, 1) == Math.Round(reqPos.y, 1)) || (Math.Round(initPos.x, 1) == Math.Round(reqPos.x, 1)))
+        {
+            return true;
+        } else if(Math.Abs(testXPos) == Math.Abs(testYPos))
         {
             return true;
         } else
         {
             return false;
-        } 
+        }
+        
+        
     }
 }

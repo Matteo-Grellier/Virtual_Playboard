@@ -43,7 +43,7 @@ public class board : MonoBehaviour
     public Vector3 mousePos = new Vector3();
 
 
-    //Pour faire référence on définis ces 2 "variables"
+    //Pour faire référence on définit ces 2 "variables"
     GameObject Pieces;
     Rigidbody2D rb;
     //public knight knight;
@@ -325,7 +325,7 @@ public class board : MonoBehaviour
 
         } else if (name.ToLower().Split('_')[0] == "queen")
         {
-            return true; // remplacer par une ligne comme ci-dessus
+            return Pieces.GetComponent<queen>().IsRightChessBox(rb.position, rightVec);
 
         } else if (name.ToLower().Split('_')[0] == "king")
         {
@@ -339,7 +339,7 @@ public class board : MonoBehaviour
 
         } else
         {
-            return true;
+            return false;
         }
 
         //return true;
