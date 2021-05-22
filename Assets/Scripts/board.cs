@@ -321,7 +321,7 @@ public class board : MonoBehaviour
 
         } else if (name.ToLower().Split('_')[0] == "rook")
         {
-            return true; // remplacer par une ligne comme ci-dessus
+            return Pieces.GetComponent<rook>().IsRightChessBox(rb.position, rightVec);
 
         } else if (name.ToLower().Split('_')[0] == "queen")
         {

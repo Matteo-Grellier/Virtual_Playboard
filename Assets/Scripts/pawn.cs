@@ -7,18 +7,6 @@ public class pawn : MonoBehaviour
 {
     bool isAlreadyPlayed = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public bool IsRightChessBox(Vector2 initPos, Vector2 reqPos)
     {
         Debug.Log("On rentre dans la vérif de position des pions");
