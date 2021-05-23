@@ -404,42 +404,50 @@ public class board : MonoBehaviour
         double otherObjPositionAxe;
         double otherRbPositionAxe;
 
+        GameObject[][] allPieces = new GameObject[2][];
+        allPieces[0] = whitePieces;
+        allPieces[1] = blackPieces;
+
 
         //bool piecesInIntervalX = false;
         //bool piecesInIntervalY = false;
 
-
-        foreach (GameObject obj in whitePieces)
+        foreach(GameObject[] pieces in allPieces)
         {
-            if (intervalOfX == 0) // Si c'est une ligne droite (vertical)
+            foreach (GameObject obj in pieces)
             {
-                intervalToVerify = intervalOfY;
-                rbPositionToVerify = Math.Round(rb.position.y, 1);
-                objPositionToVerify = Math.Round(obj.transform.position.y, 1);
-                otherInterval = intervalOfX;
-                otherRbPositionAxe = Math.Round(rb.position.x, 1);
-                otherObjPositionAxe = Math.Round(obj.transform.position.x, 1);
-            }
-            else if (intervalOfY == 0 || Math.Abs(intervalOfX) == Math.Abs(intervalOfY)) //Si c'est une ligne droite (horizontal) ou une diagonale
-            {
-                intervalToVerify = intervalOfX;
-                rbPositionToVerify = Math.Round(rb.position.x, 1);
-                objPositionToVerify = Math.Round(obj.transform.position.x, 1);
-                otherInterval = intervalOfY;
-                otherRbPositionAxe = Math.Round(rb.position.y, 1);
-                otherObjPositionAxe = Math.Round(obj.transform.position.y, 1);
-            }
-            else // Si c'est un "Knight"
-            {
-                return true;
-            }
+                if (intervalOfX == 0) // Si c'est une ligne droite (vertical)
+                {
+                    intervalToVerify = intervalOfY;
+                    rbPositionToVerify = Math.Round(rb.position.y, 1);
+                    objPositionToVerify = Math.Round(obj.transform.position.y, 1);
+                    otherInterval = intervalOfX;
+                    otherRbPositionAxe = Math.Round(rb.position.x, 1);
+                    otherObjPositionAxe = Math.Round(obj.transform.position.x, 1);
+                }
+                else if (intervalOfY == 0 || Math.Abs(intervalOfX) == Math.Abs(intervalOfY)) //Si c'est une ligne droite (horizontal) ou une diagonale
+                {
+                    intervalToVerify = intervalOfX;
+                    rbPositionToVerify = Math.Round(rb.position.x, 1);
+                    objPositionToVerify = Math.Round(obj.transform.position.x, 1);
+                    otherInterval = intervalOfY;
+                    otherRbPositionAxe = Math.Round(rb.position.y, 1);
+                    otherObjPositionAxe = Math.Round(obj.transform.position.y, 1);
+                }
+                else // Si c'est un "Knight"
+                {
+                    return true;
+                }
 
-            if(!NoPiecesInFront(intervalToVerify, rbPositionToVerify, objPositionToVerify, otherInterval, otherRbPositionAxe, otherObjPositionAxe))
-            {
-                return false;
+                if (!NoPiecesInFront(intervalToVerify, rbPositionToVerify, objPositionToVerify, otherInterval, otherRbPositionAxe, otherObjPositionAxe))
+                {
+                    return false;
+                }
+
             }
-            
         }
+
+
 
 
 
