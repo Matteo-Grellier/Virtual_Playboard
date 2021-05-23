@@ -578,9 +578,13 @@ public class board : MonoBehaviour
             if (rbPositionToVerify + addingValue == objPositionToVerify)
             {
                 Debug.Log(objPositionToVerify + " <-- Ceci est la objPositionToVerify");
-                if(otherInterval == 0 && otherObjPositionAxe == otherRbPositionAxe)
+                if(otherInterval == 0)
                 {
-                    return false;
+                    if(otherObjPositionAxe == otherRbPositionAxe)
+                    {
+                        return false;
+                    }
+                    
                 } else
                 {
                     addingValue = Math.Abs(addingValue);
