@@ -3744,6 +3744,8 @@ MonoBehaviour:
   toPutY: 32
   x: []
   y: []
+  whitePieces: []
+  blackPieces: []
   actualPositionsOfPieces:
   - 0
   - 0

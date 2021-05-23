@@ -27,6 +27,10 @@ public class board : MonoBehaviour
     public float toPutY = 0.5f;
     public float[] x = new float[8];
     public float[] y = new float[8];
+
+    //pour récupérer les coordonnées de tous les objets (pour vérification des mouvements possibles)
+    public GameObject[] whitePieces = new GameObject[16];
+    public GameObject[] blackPieces = new GameObject[16];
     public float[] actualPositionsOfPieces = new float[32];
 
     //pour RightCoor
@@ -68,7 +72,20 @@ public class board : MonoBehaviour
         //isMovable = false;
 
 
-        GameObject.FindGameObjectsWithTag("whitePieces");
+        whitePieces = GameObject.FindGameObjectsWithTag("whitePieces");
+        blackPieces = GameObject.FindGameObjectsWithTag("blackPieces");
+
+        //allPieces = whitePieces + blackPieces;
+
+        //foreach (GameObject obj in whitePieces)
+        //{
+        //    obj.transform.position;
+        //}
+
+        //foreach (GameObject obj in blackPieces)
+        //{
+
+        //}
 
 
 
@@ -178,7 +195,7 @@ public class board : MonoBehaviour
                     //Pieces = GameObject.Find(nameOfElement);                  //il faut peut etre le réactiver
                     Debug.Log("du else: " + Pieces.gameObject.name);
                     Debug.Log("previousCOlor: " + previousColor);
-                    isRightPos = TypeOfPieces(Pieces.gameObject.name);
+                    isRightPos = VerifyIsMovable(Pieces.gameObject.name);
 
                     /*Type NameOfClass = Pieces.GetType();
                     Pieces.GetComponent<knight>().IsRightChessBox();*/
@@ -314,35 +331,59 @@ public class board : MonoBehaviour
     }
 
 
-    public bool TypeOfPieces(string name)
+    //public bool VerifyIsMovable(string name)
+    //{
+    //    //PiecesInFront();
+    //    //TypeOfPieces(name);
+
+    //    if (PiecesInFront() && TypeOfPieces(name)) {
+    //        return true;
+    //    } else
+    //    {
+    //        return false;
+    //    }
+    //}
+
+    public bool VerifyIsMovable(string name)
     {
+
+        bool isRightChessSquare = false;
+        bool noPiecesInFront = true;
 
         if (name.ToLower().Split('_')[0] == "knight")
         {
-            return Pieces.GetComponent<knight>().IsRightChessBox(rb.position, rightVec);
+            isRightChessSquare = Pieces.GetComponent<knight>().IsRightChessBox(rb.position, rightVec);
 
         } else if (name.ToLower().Split('_')[0] == "bishop")
         {
-            return Pieces.GetComponent<bishop>().IsRightChessBox(rb.position, rightVec);
+            isRightChessSquare = Pieces.GetComponent<bishop>().IsRightChessBox(rb.position, rightVec);
 
         } else if (name.ToLower().Split('_')[0] == "rook")
         {
-            return Pieces.GetComponent<rook>().IsRightChessBox(rb.position, rightVec);
+            isRightChessSquare = Pieces.GetComponent<rook>().IsRightChessBox(rb.position, rightVec);
 
         } else if (name.ToLower().Split('_')[0] == "queen")
         {
-            return Pieces.GetComponent<queen>().IsRightChessBox(rb.position, rightVec);
+            isRightChessSquare = Pieces.GetComponent<queen>().IsRightChessBox(rb.position, rightVec);
 
         } else if (name.ToLower().Split('_')[0] == "king")
         {
-            return Pieces.GetComponent<king>().IsRightChessBox(rb.position, rightVec);
+            isRightChessSquare = Pieces.GetComponent<king>().IsRightChessBox(rb.position, rightVec);
 
         } else if (name.ToLower().Split('_')[0] == "pawn")
         {
             //return true; // remplacer par une ligne comme ci-dessus
 
-            return Pieces.GetComponent<pawn>().IsRightChessBox(rb.position, rightVec);
+            isRightChessSquare = Pieces.GetComponent<pawn>().IsRightChessBox(rb.position, rightVec);
 
+        }
+
+        noPiecesInFront = VerifyInFront();
+
+
+        if (isRightChessSquare && noPiecesInFront)
+        {
+            return true;
         } else
         {
             return false;
@@ -351,6 +392,208 @@ public class board : MonoBehaviour
         //return true;
     }
 
+    public bool VerifyInFront() 
+    {
+        double intervalOfX = rightVec.x - Math.Round(rb.position.x, 1);
+        double intervalOfY = rightVec.y - Math.Round(rb.position.y, 1);
+
+        double intervalToVerify;
+        double otherInterval;
+        double rbPositionToVerify;
+        double objPositionToVerify;
+        double otherObjPositionAxe;
+        double otherRbPositionAxe;
+
+
+        //bool piecesInIntervalX = false;
+        //bool piecesInIntervalY = false;
+
+
+        foreach (GameObject obj in whitePieces)
+        {
+            if (intervalOfX == 0) // Si c'est une ligne droite (vertical)
+            {
+                intervalToVerify = intervalOfY;
+                rbPositionToVerify = Math.Round(rb.position.y, 1);
+                objPositionToVerify = Math.Round(obj.transform.position.y, 1);
+                otherInterval = intervalOfX;
+                otherRbPositionAxe = Math.Round(rb.position.x, 1);
+                otherObjPositionAxe = Math.Round(obj.transform.position.x, 1);
+            }
+            else if (intervalOfY == 0 || Math.Abs(intervalOfX) == Math.Abs(intervalOfY)) //Si c'est une ligne droite (horizontal) ou une diagonale
+            {
+                intervalToVerify = intervalOfX;
+                rbPositionToVerify = Math.Round(rb.position.x, 1);
+                objPositionToVerify = Math.Round(obj.transform.position.x, 1);
+                otherInterval = intervalOfY;
+                otherRbPositionAxe = Math.Round(rb.position.y, 1);
+                otherObjPositionAxe = Math.Round(obj.transform.position.y, 1);
+            }
+            else // Si c'est un "Knight"
+            {
+                return true;
+            }
+
+            if(!NoPiecesInFront(intervalToVerify, rbPositionToVerify, objPositionToVerify, otherInterval, otherRbPositionAxe, otherObjPositionAxe))
+            {
+                return false;
+            }
+            
+        }
+
+
+
+        //foreach (GameObject obj in whitePieces)
+        //{
+        //    for(int i = 0; i <= intervalToVerify; i++)
+        //    {
+
+        //    }
+        //}
+
+        //foreach(GameObject obj in whitePieces)
+        //{
+        //    if(intervalOfX == 0)
+        //    {
+        //        piecesInIntervalX = true;
+        //    }
+
+            //    if(intervalOfY == 0)
+            //    {
+            //        piecesInIntervalY = true;
+            //    }
+
+            //    for (int i = 1; i <= Math.Abs(intervalOfX); i++)
+            //    {
+            //        int addingValue = i;
+
+            //        if(intervalOfX < 0)
+            //        {
+            //            addingValue *= -1;      
+            //        } 
+
+
+            //        if (Math.Round(rb.position.x, 1) + addingValue == Math.Round(obj.transform.position.x, 1))
+            //        {
+            //            piecesInIntervalX = true;
+            //            Debug.Log("piecesInIntervalX" + piecesInIntervalX);
+            //            Debug.Log("La valeur qui fait bug : " + obj.transform.position.x);
+            //            break;
+            //        }
+            //    }
+
+            //    for (int i = 1; i <= Math.Abs(intervalOfY); i++)
+            //    {
+
+            //        int addingValue = i;
+
+            //        if (intervalOfY < 0)
+            //        {
+            //            addingValue *= -1;
+            //        }
+
+            //        if (Math.Round(rb.position.y, 1) + addingValue == Math.Round(obj.transform.position.y, 1))
+            //        {
+            //            piecesInIntervalY = true;
+            //            Debug.Log("piecesInIntervalY" + piecesInIntervalY);
+            //            Debug.Log("La valeur qui fait bug : " + obj.transform.position.y);
+            //            break;
+            //        }
+            //    }
+
+
+            //    if(piecesInIntervalY && piecesInIntervalX)
+            //    {
+            //        return false;
+            //    } else
+            //    {
+            //        piecesInIntervalY = false;
+            //        piecesInIntervalX = false;
+            //    }
+            //}
+
+            //foreach (GameObject obj in blackPieces)
+            //{
+            //    for (int i = 1; i <= Math.Abs(intervalOfX); i++)
+            //    {
+            //        if (Math.Round(rb.position.x, 1) + i == Math.Round(obj.transform.position.x, 1))
+            //        {
+            //            piecesInIntervalX = true;
+            //            Debug.Log("piecesInIntervalX" + piecesInIntervalX);
+            //            Debug.Log("La valeur qui fait bug : " + obj.transform.position.x);
+            //            break;
+            //        }
+            //    }
+
+            //    for (int i = 1; i <= Math.Abs(intervalOfY); i++)
+            //    {
+            //        if (Math.Round(rb.position.y, 1) + i == Math.Round(obj.transform.position.y, 1))
+            //        {
+            //            piecesInIntervalY = true;
+            //            Debug.Log("piecesInIntervalY" + piecesInIntervalY);
+            //            break;
+            //        }
+            //    }
+
+            //    if (piecesInIntervalY && piecesInIntervalX)
+            //    {
+            //        return false;
+            //    }
+            //}
+
+
+            return true;
+    }
+
+
+    public bool NoPiecesInFront(double intervalToVerify, double rbPositionToVerify, double objPositionToVerify, double otherInterval, double otherRbPositionAxe, double otherObjPositionAxe)
+    {
+
+        for(int i = 1; i <= Math.Abs(intervalToVerify); i++)
+        {
+
+            int addingValue = i;
+
+            if(intervalToVerify < 0)
+            {
+                addingValue *= -1;
+            }
+                 
+            //if (Math.Round(rb.position.x, 1) + i == Math.Round(obj.transform.position.x, 1))
+            //{
+            //    piecesInIntervalX = true;
+            //    Debug.Log("piecesInIntervalX" + piecesInIntervalX);
+            //    Debug.Log("La valeur qui fait bug : " + obj.transform.position.x);
+            //    break;
+            //}
+
+            if (rbPositionToVerify + addingValue == objPositionToVerify)
+            {
+                Debug.Log(objPositionToVerify + " <-- Ceci est la objPositionToVerify");
+                if(otherInterval == 0 && otherObjPositionAxe == otherRbPositionAxe)
+                {
+                    return false;
+                } else
+                {
+                    addingValue = Math.Abs(addingValue);
+
+                    if (otherInterval < 0)
+                    {
+                        addingValue *= -1;
+                    }
+
+                    if (otherRbPositionAxe + addingValue == otherObjPositionAxe)
+                    {
+                        Debug.Log(otherObjPositionAxe + " <-- Ceci est la otherObjPositionAxe");
+                        return false;
+                    }
+                }
+            }
+        }
+
+
+        return true;
+    }
 
 }
 
