@@ -29,9 +29,16 @@ public class board : MonoBehaviour
     public float[] y = new float[8];
 
     //pour récupérer les coordonnées de tous les objets (pour vérification des mouvements possibles)
-    public GameObject[] whitePieces = new GameObject[16];
-    public GameObject[] blackPieces = new GameObject[16];
-    public float[] actualPositionsOfPieces = new float[32];
+    public GameObject[] whitePieces;
+    public GameObject[] blackPieces;
+    //public float[] actualPositionsOfPieces = new float[32];
+
+    //pour CatchPieces
+    bool isCatching;
+
+    //pour Verification de s'il y a une pièce devant
+    double rightVecToVerify;
+    double otherRightVecAxe;  
 
     //pour RightCoor
     public float rightX;
@@ -192,6 +199,14 @@ public class board : MonoBehaviour
                     //nameOfClass script = Pieces.GetComponent(nameOfClass);
 
 
+                    //redéfini les variables whitePieces et blackPieces pour enlever l'objet qui a été "destroy".
+                    if(isCatching == true)
+                    {
+                        whitePieces = GameObject.FindGameObjectsWithTag("whitePieces");
+                        blackPieces = GameObject.FindGameObjectsWithTag("blackPieces");
+                    }
+
+
                     //Pieces = GameObject.Find(nameOfElement);                  //il faut peut etre le réactiver
                     Debug.Log("du else: " + Pieces.gameObject.name);
                     Debug.Log("previousCOlor: " + previousColor);
@@ -207,6 +222,13 @@ public class board : MonoBehaviour
 
                     if (isRightPos == true)
                     {
+                        CatchPieces();
+
+                        //if (isCatching == true) {
+                        //    whitePieces = GameObject.FindGameObjectsWithTag("whitePieces");
+                        //    blackPieces = GameObject.FindGameObjectsWithTag("blackPieces");
+                        //}
+
                         isSelected = false;
                         previousColor = tagOfElement;
                         isReadyToMove = true;
@@ -421,9 +443,12 @@ public class board : MonoBehaviour
                     intervalToVerify = intervalOfY;
                     rbPositionToVerify = Math.Round(rb.position.y, 1);
                     objPositionToVerify = Math.Round(obj.transform.position.y, 1);
+                    //rightVecToVerify = rightVec.y;
+
                     otherInterval = intervalOfX;
                     otherRbPositionAxe = Math.Round(rb.position.x, 1);
                     otherObjPositionAxe = Math.Round(obj.transform.position.x, 1);
+                    //otherRightVecAxe = rightVec.x;
                 }
                 else if (intervalOfY == 0 || Math.Abs(intervalOfX) == Math.Abs(intervalOfY)) //Si c'est une ligne droite (horizontal) ou une diagonale
                 {
@@ -557,7 +582,7 @@ public class board : MonoBehaviour
     public bool NoPiecesInFront(double intervalToVerify, double rbPositionToVerify, double objPositionToVerify, double otherInterval, double otherRbPositionAxe, double otherObjPositionAxe)
     {
 
-        for(int i = 1; i <= Math.Abs(intervalToVerify); i++)
+        for(int i = 1; i < Math.Abs(intervalToVerify); i++)
         {
 
             int addingValue = i;
@@ -607,6 +632,32 @@ public class board : MonoBehaviour
         return true;
     }
 
+
+    public void CatchPieces()
+    {
+        GameObject[] oppositeColor;
+
+        if(previousColor == "whitePieces")
+        {
+            oppositeColor = whitePieces;
+        } else
+        {
+            oppositeColor = blackPieces;
+        }
+
+        foreach(GameObject obj in oppositeColor)
+        {
+            if(Math.Round(obj.transform.position.x, 1) == rightVec.x && Math.Round(obj.transform.position.y, 1) == rightVec.y)
+            {
+                Debug.Log("Cest bien une autre piece mangeable");
+                Destroy(obj);
+                isCatching = true;
+                return;
+            }
+        }
+
+        isCatching = false;
+    }
 }
 
 
