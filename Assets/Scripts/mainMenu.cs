@@ -7,9 +7,16 @@ public class mainMenu : MonoBehaviour
 {
 
     RectTransform rectTransform;
+    // GameObject buttonA = GameObject.Find("chess button");
+    public AudioSource audioSource;
+    public AudioClip menue;
+
+
     void Start () 
     {
-     rectTransform = GetComponent<RectTransform>();
+        rectTransform = GetComponent<RectTransform>();
+        audioSource = GetComponent<AudioSource>();
+        // menue = 
     }
 
     public void playGame() 
@@ -26,19 +33,26 @@ public class mainMenu : MonoBehaviour
     public void MenueLeft()
     {
         Vector2 aPos = rectTransform.position;
-        aPos.x = aPos.x * Time.deltaTime;
+        aPos.x += 180;
         rectTransform.position = aPos;
+        print("aPos" + aPos);
+        // Vector3 pos = buttonA.transform.position;
+        // pos.x -= 180;
+        // buttonA.transform.position = pos;
+        // audioSource.Play();
     }
 
     public void MenueRight()
     {
         Vector2 aPos = rectTransform.position;
-        aPos.x = aPos.x * Time.deltaTime;
+        aPos.x -= 180;
         rectTransform.position = aPos;
+        print("aPos" + aPos);
+
     }
 
     public void Settings()
     {
-        
+        // audioSource.PlayOneShot(menue, 0.7f);
     }
 }
