@@ -15,18 +15,26 @@ public class board : MonoBehaviour
     public bool isSelected;
     public bool isReadyToMove;
     public bool isRightPos;
-    //public bool isMovable;
 
     //Others
     public int nameOfElementInc;
-    
-    public int rookBuff = 0;
 
     //pour Board()
     public float toPutX = 0.5f;
     public float toPutY = 0.5f;
     public float[] x = new float[8];
     public float[] y = new float[8];
+
+    //pour récupérer les coordonnées de tous les objets (pour vérification des mouvements possibles)
+    public GameObject[] whitePieces;
+    public GameObject[] blackPieces;
+
+    //pour CatchPieces
+    public bool isCatching;
+
+    //pour Verification de s'il y a une pièce devant
+    double rightVecToVerify;
+    double otherRightVecAxe;  
 
     //pour RightCoor
     public float rightX;
@@ -43,12 +51,9 @@ public class board : MonoBehaviour
     public Vector3 mousePos = new Vector3();
 
 
-    //Pour faire référence on définis ces 2 "variables"
+    //Pour faire référence on définit ces 2 "variables"
     GameObject Pieces;
     Rigidbody2D rb;
-    //public knight knight;
-    //Type NameOfClass;
-    //public knight knight;
 
     public Vector2 position = new Vector2(0f, 0f);
     public float moveSpeed = 0.1f;
@@ -64,75 +69,18 @@ public class board : MonoBehaviour
         previousColor = "blackPieces";
         isSelected = false;
         isReadyToMove = false;
-        //isMovable = false;
 
-        //Faire référence
-        //Pieces = GameObject.Find(nameOfElement);//Trouver le gameObject correspondant à Unknown
-        //rb = Pieces.GetComponent<Rigidbody2D>(); // On prend la component de Pieces (qui est défini juste au dessus) qui est le RigidBody2D
+
+        whitePieces = GameObject.FindGameObjectsWithTag("whitePieces");
+        blackPieces = GameObject.FindGameObjectsWithTag("blackPieces");
 
     }
-    //pieces Pieces;
-
-
-    //public void ToKnowElement()
-    //{
-
-        //Debug.Log(isSelectClick);
-
-        /*if (isSelectClick == true)
-        {
-            Pieces = GameObject.Find(nameOfElement);
-            rb = Pieces.GetComponent<Rigidbody2D>();
-            //Debug.Log(nameOfElement);
-            Debug.Log(Pieces.gameObject.name);
-        } /*else
-        {
-            nameOfElement = "Unknown";
-            Pieces = GameObject.Find(nameOfElement);
-            rb = Pieces.GetComponent<Rigidbody2D>();
-        }*/
-        
-    //}
 
     void Update()
     {
 
         if (Input.GetMouseButtonDown(0))
         {
-               
-            /*if (isSelectionClick == false && nameOfElementInc >= 1)
-            {
-                //Debug.Log("Je suis un connard");
-            
-                mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                mousePos.z = 0;
-
-                Debug.Log("ceci est la mousePos :" + mousePos);
-
-                RightCoor(mousePos.x, mousePos.y);
-
-                //nameOfElementInc++;
-                //ToKnowElement();
-                Debug.Log(Pieces.gameObject.name);
-                //isSelectClick = true;
-
-
-                nameOfElementInc = 0;
-                //isMovable = false;
-                //ToKnowElement();
-            }
-
-            // Dans le cas où on a cliqué sur une pièce
-            if (isSelectionClick == true && tagOfElement != previousColor)
-            {
-                Pieces = GameObject.Find(nameOfElement);
-                rb = Pieces.GetComponent<Rigidbody2D>();
-                //Debug.Log(nameOfElement);
-                Debug.Log(Pieces.gameObject.name);
-
-                isSelectionClick = false;
-                previousColor = tagOfElement;
-            }*/
 
             if (isSelected == true)
             {
@@ -140,79 +88,58 @@ public class board : MonoBehaviour
                 {
                     Pieces = GameObject.Find(nameOfElement);
                     rb = Pieces.GetComponent<Rigidbody2D>();
-                    //Debug.Log(nameOfElement);
-                    Debug.Log(Pieces.gameObject.name);
 
                     isSelectionClick = false;
                     isReadyToMove = false;
-                    /*previousColor = tagOfElement;*/
                 }else
                 {
                     mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     mousePos.z = 0;
 
-                    Debug.Log("ceci est la mousePos :" + mousePos);
-
                     RightCoor(mousePos.x, mousePos.y);
 
-                    Debug.Log("du else: " + Pieces.gameObject.name);
 
-                    /*nameOfElementInc = 0;*/
+                    //redéfini les variables whitePieces et blackPieces pour enlever l'objet qui a été "destroy".
+                    if(isCatching == true)
+                    {
+                        whitePieces = GameObject.FindGameObjectsWithTag("whitePieces");
+                        blackPieces = GameObject.FindGameObjectsWithTag("blackPieces");
+                    }
 
-                    /*position = Vector2.Lerp(Pieces.transform.position, rightVec, moveSpeed);*/
-
-                    //Pieces = GameObject.Find(nameOfElement);
-
-                    /*Type NameOfClass = Pieces.GetType();*/
-                    //var coucou = ObjectNames.GetClassName(Pieces);
-                    //Debug.Log("class ? " + coucou);
-                    //nameOfClass script = Pieces.GetComponent(nameOfClass);
-
-
-                    //Pieces = GameObject.Find(nameOfElement);                  //il faut peut etre le réactiver
-                    Debug.Log("du else: " + Pieces.gameObject.name);
-                    Debug.Log("previousCOlor: " + previousColor);
-                    isRightPos = TypeOfPieces(Pieces.gameObject.name);
-
-                    /*Type NameOfClass = Pieces.GetType();
-                    Pieces.GetComponent<knight>().IsRightChessBox();*/
-                    //knight.IsRightChessBox();
-                    //NameOfClass Pieces.GetComponent(NameOfClass).IsRightChessBox();
-
-                    /*var testVar = Pieces.GetComponent(NameOfClass);
-                    testVar.IsRightChessBox();*/
+                    isRightPos = VerifyIsMovable(Pieces, rb.position, rightVec);
+                        
+                    if (!isRightPos) {
+                        FindObjectOfType<AudioManager>().Play("cant");
+                    }
 
                     if (isRightPos == true)
                     {
+
+                        FindObjectOfType<AudioManager>().Play("piece");
+
+                        //vérification de s'il y a "échec" pour l'adversaire
+                        CheckMateVerification(previousColor);
+
+                        //Attraper des pièces (tout sauf les pions qui ont un fonctionnement bien spécifique)
+                        if (Pieces.gameObject.name.ToLower().Split('_')[0] != "pawn")
+                        {
+                            CatchPieces();
+                        }
+
                         isSelected = false;
                         previousColor = tagOfElement;
                         isReadyToMove = true;
-                    } /*else
-                    {
-                        isSelected = true;
-                        isReadyToMove = false;
-                    }*/
-
-                    Debug.Log("incompréhension / 20");
+                    }
 
                 }
             }
 
         }
 
-        //isSelect = false;
-
         if (isReadyToMove == true && isRightPos == true)
         {
-
-            //if ()
-            //{
-
-            //}
-
             //vecteur allant de la position Pieces.tr... à rightVec par moveSpeed
             position = Vector2.Lerp(Pieces.transform.position, rightVec, moveSpeed); // Grâce à "Pieces.transform.position" on modifie la position pour l'objet correspondant à pieces (voir plus haut)
-            //Debug.Log(position);
         }
 
 
@@ -221,38 +148,9 @@ public class board : MonoBehaviour
     void FixedUpdate()
     {
 
-        /*        if (isSelectionClick == false && nameOfElementInc == 0)
-                {
-                    rb.MovePosition(position); //On utilise MovePosition (methods de RigidBody2D) à la position (voir plus haut)
-
-                    Debug.Log(position);
-                    Debug.Log("is RightVEC" + rightVec);
-
-                    *//*if (position.x == rightVec.x && position.y == rightVec.y)
-                    {
-                        isMovable = false;
-                    }*//*
-                }*/
-
         if (isReadyToMove == true && isRightPos == true)
         {
             rb.MovePosition(position); //On utilise MovePosition (methods de RigidBody2D) à la position (voir plus haut)
-
-            /*Debug.Log(position);
-            Debug.Log("is RightVEC" + rightVec);*/
-
-            /*if (position.x == rightVec.x && position.y == rightVec.y)
-            {
-                //isMovable = false;
-            }*/
-
-
-            /*if (rb.position.x == rightVec.x && rb.position.y == rightVec.y)
-            {
-                //isMovable = false;
-                isReadyToMove = false;
-            }*/
-    
         }
 
 
@@ -265,15 +163,9 @@ public class board : MonoBehaviour
 
         for (int i = 0; i < 8; i++)
         {
-            //Debug.Log("Test mouseX" + mouseX);
             verifX[i] = mouseX - x[i];
             verifY[i] = mouseY - y[i];
-            //Debug.Log( "Test verifX " + verifX[i]);
         }
-
-        //Debug console
-        //Debug.Log("Tableaux : " + verifX[2] + ", " + verifY[2]); //il faut avoir : valeur differente que celle du mouseX et mouseY
-        //Debug.Log("X = " + x[1] + x[2] + x[3]); // il faut avoir les bonnes coordonnées
 
         float previousX = verifX[0];
         float previousY = verifY[0];
@@ -297,55 +189,275 @@ public class board : MonoBehaviour
 
         }
 
-        //Debug concole
-        //Debug.Log(rightX);
-        //Debug.Log(rightY);
-
         rightVec.x = rightX;
         rightVec.y = rightY;
 
         return rightVec;
     }
 
-
-    public bool TypeOfPieces(string name)
+    public bool VerifyIsMovable(GameObject pieceToVerify, Vector2 positionToVerify, Vector2 reqPos)
     {
+
+        string name = pieceToVerify.gameObject.name;
+
+        bool isRightChessSquare = false;
+        bool noPiecesInFront = true;
+        bool noCheck = true;
 
         if (name.ToLower().Split('_')[0] == "knight")
         {
-            return Pieces.GetComponent<knight>().IsRightChessBox(rb.position, rightVec);
+            isRightChessSquare = pieceToVerify.GetComponent<knight>().IsRightChessBox(positionToVerify, reqPos);
 
         } else if (name.ToLower().Split('_')[0] == "bishop")
         {
-            return true; // remplacer par une ligne comme ci-dessus
+            isRightChessSquare = pieceToVerify.GetComponent<bishop>().IsRightChessBox(positionToVerify, reqPos);
 
         } else if (name.ToLower().Split('_')[0] == "rook")
         {
-            return true; // remplacer par une ligne comme ci-dessus
+            isRightChessSquare = pieceToVerify.GetComponent<rook>().IsRightChessBox(positionToVerify, reqPos);
 
         } else if (name.ToLower().Split('_')[0] == "queen")
         {
-            return true; // remplacer par une ligne comme ci-dessus
+            isRightChessSquare = pieceToVerify.GetComponent<queen>().IsRightChessBox(positionToVerify, reqPos);
 
         } else if (name.ToLower().Split('_')[0] == "king")
         {
-            return true; // remplacer par une ligne comme ci-dessus
+            isRightChessSquare = pieceToVerify.GetComponent<king>().IsRightChessBox(positionToVerify, reqPos);
 
         } else if (name.ToLower().Split('_')[0] == "pawn")
         {
-            //return true; // remplacer par une ligne comme ci-dessus
+            isRightChessSquare = pieceToVerify.GetComponent<pawn>().IsRightChessBox(positionToVerify, reqPos);
 
-            return Pieces.GetComponent<pawn>().IsRightChessBox(rb.position, rightVec);
+        }
+
+        GameObject[][] allPieces = new GameObject[2][];
+        allPieces[0] = whitePieces;
+        allPieces[1] = blackPieces;
+
+        //Vérifiez s'il y a une pièce devant en regardant chaque pièce de l'échiquier
+        noPiecesInFront = true;
+
+        foreach (GameObject[] pieces in allPieces)
+        {
+            foreach (GameObject obj in pieces)
+            {
+
+                if (pieceToVerify.tag == previousColor)
+                {
+                    if (!VerifyInFront(rightVec, positionToVerify, reqPos))
+                    {
+                        return false;
+                    }
+                } else
+                {
+                    if (!VerifyInFront(obj.transform.position, positionToVerify, reqPos))
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+
+
+        if (isRightChessSquare && noPiecesInFront)
+        {
+            noCheck = CheckMateVerification(pieceToVerify.tag);
+        }
+
+
+        if (isRightChessSquare && noPiecesInFront && noCheck)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
+    
+    //VerifyInFront() sert à faire la vérification pour une pièce de l'échiquier pour savoir s'il y a quelque chose devant. 
+    public bool VerifyInFront(Vector2 obstaclePos, Vector2 positionToVerify, Vector2 reqPos) 
+    {
+        double intervalOfX = reqPos.x - Math.Round(positionToVerify.x, 1);
+        double intervalOfY = reqPos.y - Math.Round(positionToVerify.y, 1);
+
+        double intervalToVerify;
+        double otherInterval;
+        double rbPositionToVerify;
+        double objPositionToVerify;
+        double otherObjPositionAxe;
+        double otherRbPositionAxe;
+
+        GameObject[][] allPieces = new GameObject[2][];
+        allPieces[0] = whitePieces;
+        allPieces[1] = blackPieces;
+
+        if (intervalOfX == 0) // Si c'est une ligne droite (vertical)
+        {
+            intervalToVerify = intervalOfY;
+            rbPositionToVerify = Math.Round(positionToVerify.y, 1);
+            objPositionToVerify = Math.Round(obstaclePos.y, 1);
+
+            otherInterval = intervalOfX;
+            otherRbPositionAxe = Math.Round(positionToVerify.x, 1);
+            otherObjPositionAxe = Math.Round(obstaclePos.x, 1);
+
+        }
+        else if (intervalOfY == 0 || Math.Abs(intervalOfX) == Math.Abs(intervalOfY)) //Si c'est une ligne droite (horizontal) ou une diagonale
+        {
+            intervalToVerify = intervalOfX;
+            rbPositionToVerify = Math.Round(positionToVerify.x, 1);
+            objPositionToVerify = Math.Round(obstaclePos.x, 1);
+            otherInterval = intervalOfY;
+            otherRbPositionAxe = Math.Round(positionToVerify.y, 1);
+            otherObjPositionAxe = Math.Round(obstaclePos.y, 1);
+        }
+        else // Si c'est un "Knight"
+        {
+            return true;
+        }
+
+        if (!NoPiecesInFront(intervalToVerify, rbPositionToVerify, objPositionToVerify, otherInterval, otherRbPositionAxe, otherObjPositionAxe))
+        {
+            return false;
+        }
+
+            return true;
+    }
+
+
+    public bool NoPiecesInFront(double intervalToVerify, double rbPositionToVerify, double objPositionToVerify, double otherInterval, double otherRbPositionAxe, double otherObjPositionAxe)
+    {
+
+        //variable dans le cas ou c'est un pion en ligne droite, lui bloquer l'accès à la case de devant s'il y a un element
+        int addBlockMovementForPawn = 0;
+
+        if(Pieces.gameObject.name.ToLower().Split('_')[0] == "pawn" && otherInterval == 0)
+        {
+            addBlockMovementForPawn = 1;
+        }
+
+        for(int i = 1; i < Math.Abs(intervalToVerify) + addBlockMovementForPawn; i++)
+        {
+
+            int addingValue = i;
+
+            if(intervalToVerify < 0)
+            {
+                addingValue *= -1;
+            }
+
+            if (rbPositionToVerify + addingValue == objPositionToVerify)
+            {
+                if(otherInterval == 0)
+                {
+                    if(otherObjPositionAxe == otherRbPositionAxe)
+                    {
+                        return false;
+                    }
+                    
+                } else
+                {
+                    addingValue = Math.Abs(addingValue);
+
+                    if (otherInterval < 0)
+                    {
+                        addingValue *= -1;
+                    }
+
+                    if (otherRbPositionAxe + addingValue == otherObjPositionAxe)
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+
+
+        return true;
+    }
+
+    //Pour attraper les pièces
+    public void CatchPieces()
+    {
+        GameObject[] oppositeColor;
+
+        if(previousColor == "whitePieces")
+        {
+            oppositeColor = whitePieces;
+        } else
+        {
+            oppositeColor = blackPieces;
+        }
+
+        //Pour chaque pièce, vérification de si la position correspond à celle cliquer (ce fait après avoir vérifié si la pièce qui veut manger, peut bouger)
+        foreach(GameObject obj in oppositeColor)
+        {
+            if(Math.Round(obj.transform.position.x, 1) == rightVec.x && Math.Round(obj.transform.position.y, 1) == rightVec.y)
+            {
+                Destroy(obj);
+                isCatching = true;
+                return;
+            }
+        }
+
+        isCatching = false;
+    }
+
+    public bool CheckMateVerification(string colorToVerify)
+    {
+        GameObject verifyKing;
+        GameObject[] objectsToVerify;
+
+        bool objIsCheck = false;      
+
+        if (colorToVerify == "blackPieces")
+        {
+            verifyKing = GameObject.Find("king_b");
+            objectsToVerify = whitePieces;
+            verifyKing.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
+
+        } else
+        {
+            verifyKing = GameObject.Find("king_w");
+            objectsToVerify = blackPieces;
+            verifyKing.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
+        }
+
+        Vector2 kingPos = verifyKing.transform.position;
+
+        //pour chaque pièce on va vérifier si elles peuvent bouger sur la position du roi, si c'est le cas, alors "échec"
+        foreach(GameObject obj in objectsToVerify)
+        {
+
+            Rigidbody2D rigidBodyOfPiece = obj.GetComponent<Rigidbody2D>();
+            Vector2 posToVerif = rigidBodyOfPiece.position;
+
+            if (isRightPos == true && obj == Pieces)
+            {
+                posToVerif = rightVec;
+            }
+
+            if (VerifyIsMovable(obj, posToVerif, kingPos))
+            {
+                objIsCheck = true;
+            } 
+
+        }
+
+        if(objIsCheck)
+        {
+            //change la couleur + joue le son d'échec.
+            verifyKing.GetComponent<SpriteRenderer>().color = new Color(0.69f, 0, 0, 1);
+            FindObjectOfType<AudioManager>().Play("echec");
+
+            return false;
 
         } else
         {
             return true;
         }
 
-        //return true;
     }
-
-
 }
 
 
