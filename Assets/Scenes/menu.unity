@@ -891,17 +891,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-      - m_Target: {fileID: 1152112534}
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1152112532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1133,7 +1122,7 @@ GameObject:
   - component: {fileID: 1332418981}
   - component: {fileID: 1332418980}
   - component: {fileID: 1332418979}
-  - component: {fileID: 1332418982}
+  - component: {fileID: 1332418983}
   m_Layer: 5
   m_Name: option button
   m_TagString: Untagged
@@ -1204,7 +1193,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1332418982}
+      - m_Target: {fileID: 1332418983}
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -1252,7 +1241,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1332418977}
   m_CullTransparentMesh: 0
---- !u!82 &1332418982
+--- !u!82 &1332418983
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1262,7 +1251,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: bf762f231b8e27d458d8f1dc154cd273, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3db4c7f228531b6428ccb165fd6cdac4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1384,7 +1373,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 246.01562, y: 140.97917}
+  m_AnchoredPosition: {x: 250.0156, y: 140.97917}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1435201981
@@ -1471,7 +1460,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bdca8b81978315848b277c29f149565b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e3913a633a3f8964594e228ade4bc6ef, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1621,7 +1610,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 88.984375, y: 140.97917}
+  m_AnchoredPosition: {x: 80.98438, y: 140.97917}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1684221207
@@ -1708,7 +1697,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e398d5012f4b71f45b5965e8a6662de2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c54af200658e80647945fc4be61a573c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1974,7 +1963,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: bf762f231b8e27d458d8f1dc154cd273, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3db4c7f228531b6428ccb165fd6cdac4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
