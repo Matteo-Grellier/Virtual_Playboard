@@ -78,6 +78,7 @@ public class movement : MonoBehaviour
                 Board.GetComponent<board>().isSelectionClick = true;
                 Board.GetComponent<board>().nameOfElement = (this.gameObject.name).ToString();
 
+
             } else if (Board.GetComponent<board>().isSelected == true && (this.gameObject.tag).ToString() != Board.GetComponent<board>().previousColor)
             {
                 Debug.Log("isSelected = true and color != previousColor");

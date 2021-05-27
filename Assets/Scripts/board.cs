@@ -186,6 +186,7 @@ public class board : MonoBehaviour
 
                     Debug.Log("ceci est la mousePos :" + mousePos);
 
+
                     RightCoor(mousePos.x, mousePos.y);
 
                     Debug.Log("du else: " + Pieces.gameObject.name);
@@ -215,6 +216,12 @@ public class board : MonoBehaviour
                     Debug.Log("previousCOlor: " + previousColor);
 
                     isRightPos = VerifyIsMovable(Pieces, rb.position, rightVec);
+                        
+                        if (!isRightPos) {
+                            FindObjectOfType<AudioManager>().Play("cant");
+                        }
+
+
 
                     /*Type NameOfClass = Pieces.GetType();
                     Pieces.GetComponent<knight>().IsRightChessBox();*/
@@ -226,6 +233,8 @@ public class board : MonoBehaviour
 
                     if (isRightPos == true)
                     {
+
+                        FindObjectOfType<AudioManager>().Play("piece");
 
                         CheckMateVerification(previousColor);
 
@@ -802,6 +811,8 @@ public class board : MonoBehaviour
 
             verifyKing.GetComponent<SpriteRenderer>().color = new Color(0.69f, 0, 0, 1);
             isCheck = true;
+            FindObjectOfType<AudioManager>().Play("echec");
+
             return false;
 
         } else
