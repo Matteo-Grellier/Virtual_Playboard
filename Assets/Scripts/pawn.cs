@@ -32,7 +32,22 @@ public class pawn : MonoBehaviour
             verifyEquality = Math.Abs(verifyEquality);
         }
 
-        if (isAlreadyPlayed == false)
+
+        if(testYPos == verifyEquality && Math.Abs(testXPos) == 1)
+        {
+            if(Board.GetComponent<board>().CheckMateVerification(this.tag))
+            {
+                Board.GetComponent<board>().CatchPieces();
+            }
+            
+            bool isCatching = Board.GetComponent<board>().isCatching;
+            if(isCatching == true)
+            {
+                return true;
+            }
+        }
+
+            if (isAlreadyPlayed == false)
         {
             //Debug.Log("On est dans la condition de isAlreadyPlayed == false");
 

@@ -34,7 +34,10 @@ public class board : MonoBehaviour
     //public float[] actualPositionsOfPieces = new float[32];
 
     //pour CatchPieces
-    bool isCatching;
+    public bool isCatching;
+
+    //pour CheckMateVerif
+    bool isCheck = false;
 
     //pour Verification de s'il y a une pièce devant
     double rightVecToVerify;
@@ -210,7 +213,8 @@ public class board : MonoBehaviour
                     //Pieces = GameObject.Find(nameOfElement);                  //il faut peut etre le réactiver
                     Debug.Log("du else: " + Pieces.gameObject.name);
                     Debug.Log("previousCOlor: " + previousColor);
-                    isRightPos = VerifyIsMovable(Pieces.gameObject.name);
+
+                    isRightPos = VerifyIsMovable(Pieces, rb.position, rightVec);
 
                     /*Type NameOfClass = Pieces.GetType();
                     Pieces.GetComponent<knight>().IsRightChessBox();*/
@@ -222,8 +226,14 @@ public class board : MonoBehaviour
 
                     if (isRightPos == true)
                     {
-                        CatchPieces();
 
+                        CheckMateVerification(previousColor);
+
+                        if (Pieces.gameObject.name.ToLower().Split('_')[0] != "pawn")
+                        {
+                            CatchPieces();
+                        }
+                        
                         //if (isCatching == true) {
                         //    whitePieces = GameObject.FindGameObjectsWithTag("whitePieces");
                         //    blackPieces = GameObject.FindGameObjectsWithTag("blackPieces");
@@ -297,7 +307,7 @@ public class board : MonoBehaviour
                 //isMovable = false;
                 isReadyToMove = false;
             }*/
-    
+
         }
 
 
@@ -366,44 +376,94 @@ public class board : MonoBehaviour
     //    }
     //}
 
-    public bool VerifyIsMovable(string name)
+    public bool VerifyIsMovable(GameObject pieceToVerify, Vector2 positionToVerify, Vector2 reqPos)
     {
+
+        string name = pieceToVerify.gameObject.name;
+        //Rigidbody2D rigidBodyOfPiece = pieceToVerify.GetComponent<Rigidbody2D>();
 
         bool isRightChessSquare = false;
         bool noPiecesInFront = true;
+        bool noCheck = true;
 
         if (name.ToLower().Split('_')[0] == "knight")
         {
-            isRightChessSquare = Pieces.GetComponent<knight>().IsRightChessBox(rb.position, rightVec);
+            isRightChessSquare = pieceToVerify.GetComponent<knight>().IsRightChessBox(positionToVerify, reqPos);
 
         } else if (name.ToLower().Split('_')[0] == "bishop")
         {
-            isRightChessSquare = Pieces.GetComponent<bishop>().IsRightChessBox(rb.position, rightVec);
+            isRightChessSquare = pieceToVerify.GetComponent<bishop>().IsRightChessBox(positionToVerify, reqPos);
 
         } else if (name.ToLower().Split('_')[0] == "rook")
         {
-            isRightChessSquare = Pieces.GetComponent<rook>().IsRightChessBox(rb.position, rightVec);
+            isRightChessSquare = pieceToVerify.GetComponent<rook>().IsRightChessBox(positionToVerify, reqPos);
 
         } else if (name.ToLower().Split('_')[0] == "queen")
         {
-            isRightChessSquare = Pieces.GetComponent<queen>().IsRightChessBox(rb.position, rightVec);
+            isRightChessSquare = pieceToVerify.GetComponent<queen>().IsRightChessBox(positionToVerify, reqPos);
 
         } else if (name.ToLower().Split('_')[0] == "king")
         {
-            isRightChessSquare = Pieces.GetComponent<king>().IsRightChessBox(rb.position, rightVec);
+            isRightChessSquare = pieceToVerify.GetComponent<king>().IsRightChessBox(positionToVerify, reqPos);
 
         } else if (name.ToLower().Split('_')[0] == "pawn")
         {
             //return true; // remplacer par une ligne comme ci-dessus
 
-            isRightChessSquare = Pieces.GetComponent<pawn>().IsRightChessBox(rb.position, rightVec);
+            isRightChessSquare = pieceToVerify.GetComponent<pawn>().IsRightChessBox(positionToVerify, reqPos);
 
         }
 
-        noPiecesInFront = VerifyInFront();
+        //noPiecesInFront = VerifyInFront(rb.position);
+
+        GameObject[][] allPieces = new GameObject[2][];
+        allPieces[0] = whitePieces;
+        allPieces[1] = blackPieces;
+
+        noPiecesInFront = true;
+
+        foreach (GameObject[] pieces in allPieces)
+        {
+            foreach (GameObject obj in pieces)
+            {
+
+                if (pieceToVerify.tag == previousColor)
+                {
+
+                    Debug.Log("Yo man est ce que tu rentres ici");
+                    if (!VerifyInFront(rightVec, positionToVerify, reqPos))
+                    {
+                        return false;
+                    }
+                } else
+                {
+                    if (!VerifyInFront(obj.transform.position, positionToVerify, reqPos))
+                    {
+                        return false;
+                    }
+                }
+
+
+
+            }
+        }
 
 
         if (isRightChessSquare && noPiecesInFront)
+        {
+            //noCheck = VerifyInFront(pieceToVerify, positionToVerify);
+
+            noCheck = CheckMateVerification(pieceToVerify.tag);
+        }
+
+
+        //if (isCheck == true && isRightChessSquare && noPiecesInFront)
+        //{
+        //    noCheck = CheckMateMovement();
+        //}
+
+
+        if (isRightChessSquare && noPiecesInFront && noCheck)
         {
             return true;
         } else
@@ -414,10 +474,10 @@ public class board : MonoBehaviour
         //return true;
     }
 
-    public bool VerifyInFront() 
+    public bool VerifyInFront(Vector2 obstaclePos, Vector2 positionToVerify, Vector2 reqPos) 
     {
-        double intervalOfX = rightVec.x - Math.Round(rb.position.x, 1);
-        double intervalOfY = rightVec.y - Math.Round(rb.position.y, 1);
+        double intervalOfX = reqPos.x - Math.Round(positionToVerify.x, 1);
+        double intervalOfY = reqPos.y - Math.Round(positionToVerify.y, 1);
 
         double intervalToVerify;
         double otherInterval;
@@ -434,43 +494,37 @@ public class board : MonoBehaviour
         //bool piecesInIntervalX = false;
         //bool piecesInIntervalY = false;
 
-        foreach(GameObject[] pieces in allPieces)
+        if (intervalOfX == 0) // Si c'est une ligne droite (vertical)
         {
-            foreach (GameObject obj in pieces)
-            {
-                if (intervalOfX == 0) // Si c'est une ligne droite (vertical)
-                {
-                    intervalToVerify = intervalOfY;
-                    rbPositionToVerify = Math.Round(rb.position.y, 1);
-                    objPositionToVerify = Math.Round(obj.transform.position.y, 1);
-                    //rightVecToVerify = rightVec.y;
+            intervalToVerify = intervalOfY;
+            rbPositionToVerify = Math.Round(positionToVerify.y, 1);
+            objPositionToVerify = Math.Round(obstaclePos.y, 1);
+            //rightVecToVerify = rightVec.y;
 
-                    otherInterval = intervalOfX;
-                    otherRbPositionAxe = Math.Round(rb.position.x, 1);
-                    otherObjPositionAxe = Math.Round(obj.transform.position.x, 1);
-                    //otherRightVecAxe = rightVec.x;
-                }
-                else if (intervalOfY == 0 || Math.Abs(intervalOfX) == Math.Abs(intervalOfY)) //Si c'est une ligne droite (horizontal) ou une diagonale
-                {
-                    intervalToVerify = intervalOfX;
-                    rbPositionToVerify = Math.Round(rb.position.x, 1);
-                    objPositionToVerify = Math.Round(obj.transform.position.x, 1);
-                    otherInterval = intervalOfY;
-                    otherRbPositionAxe = Math.Round(rb.position.y, 1);
-                    otherObjPositionAxe = Math.Round(obj.transform.position.y, 1);
-                }
-                else // Si c'est un "Knight"
-                {
-                    return true;
-                }
-
-                if (!NoPiecesInFront(intervalToVerify, rbPositionToVerify, objPositionToVerify, otherInterval, otherRbPositionAxe, otherObjPositionAxe))
-                {
-                    return false;
-                }
-
-            }
+            otherInterval = intervalOfX;
+            otherRbPositionAxe = Math.Round(positionToVerify.x, 1);
+            otherObjPositionAxe = Math.Round(obstaclePos.x, 1);
+            //otherRightVecAxe = rightVec.x;
         }
+        else if (intervalOfY == 0 || Math.Abs(intervalOfX) == Math.Abs(intervalOfY)) //Si c'est une ligne droite (horizontal) ou une diagonale
+        {
+            intervalToVerify = intervalOfX;
+            rbPositionToVerify = Math.Round(positionToVerify.x, 1);
+            objPositionToVerify = Math.Round(obstaclePos.x, 1);
+            otherInterval = intervalOfY;
+            otherRbPositionAxe = Math.Round(positionToVerify.y, 1);
+            otherObjPositionAxe = Math.Round(obstaclePos.y, 1);
+        }
+        else // Si c'est un "Knight"
+        {
+            return true;
+        }
+
+        if (!NoPiecesInFront(intervalToVerify, rbPositionToVerify, objPositionToVerify, otherInterval, otherRbPositionAxe, otherObjPositionAxe))
+        {
+            return false;
+        }
+
 
 
 
@@ -582,7 +636,15 @@ public class board : MonoBehaviour
     public bool NoPiecesInFront(double intervalToVerify, double rbPositionToVerify, double objPositionToVerify, double otherInterval, double otherRbPositionAxe, double otherObjPositionAxe)
     {
 
-        for(int i = 1; i < Math.Abs(intervalToVerify); i++)
+        //variable dans le cas ou c'est un pion en ligne droite, lui bloquer l'accès à la case de devant s'il y a un element
+        int addBlockMovementForPawn = 0;
+
+        if(Pieces.gameObject.name.ToLower().Split('_')[0] == "pawn" && otherInterval == 0)
+        {
+            addBlockMovementForPawn = 1;
+        }
+
+        for(int i = 1; i < Math.Abs(intervalToVerify) + addBlockMovementForPawn; i++)
         {
 
             int addingValue = i;
@@ -602,7 +664,7 @@ public class board : MonoBehaviour
 
             if (rbPositionToVerify + addingValue == objPositionToVerify)
             {
-                Debug.Log(objPositionToVerify + " <-- Ceci est la objPositionToVerify");
+                //Debug.Log(objPositionToVerify + " <-- Ceci est la objPositionToVerify");
                 if(otherInterval == 0)
                 {
                     if(otherObjPositionAxe == otherRbPositionAxe)
@@ -621,7 +683,7 @@ public class board : MonoBehaviour
 
                     if (otherRbPositionAxe + addingValue == otherObjPositionAxe)
                     {
-                        Debug.Log(otherObjPositionAxe + " <-- Ceci est la otherObjPositionAxe");
+                        //Debug.Log(otherObjPositionAxe + " <-- Ceci est la otherObjPositionAxe");
                         return false;
                     }
                 }
@@ -657,6 +719,109 @@ public class board : MonoBehaviour
         }
 
         isCatching = false;
+    }
+
+    public bool CheckMateVerification(string colorToVerify)
+    {
+        GameObject verifyKing;
+        GameObject[] objectsToVerify;
+
+        double kingPositionX;
+        double kingPositionY;
+        //double intervalY;
+        //double intervalX;
+
+        //bool objIsCheck = false;
+
+        bool objIsCheck = false;
+        
+
+        if (colorToVerify == "blackPieces")
+        {
+            verifyKing = GameObject.Find("king_b");
+            objectsToVerify = whitePieces;
+            verifyKing.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
+            Debug.Log("Bonjour je suis bien dans la truc de color");
+        } else //if(previousColor == "whitePieces")
+        {
+            verifyKing = GameObject.Find("king_w");
+            objectsToVerify = blackPieces;
+            verifyKing.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
+        }
+
+        kingPositionX = Math.Round(verifyKing.transform.position.x, 1);
+        kingPositionY = Math.Round(verifyKing.transform.position.y, 1);
+
+        //intervalX = 7.5 - kingPositionX;
+        //intervalY = 7.5 - kingPositionY; //attention il faudra changer en fonction de ce que l'on veut test (ligne droite / diago etc...)
+
+        //s'il y a une pièce blanche et noir sur la meme ligne alors faire une vérif de laquelle est la plus proche du roi
+        // s'il y a que la couleur opposé au roi, alors directement dire echec
+        // s'il y a que la couleur du roi, alors trkl
+        //un état d'echec ne justifie pas de ne pas vérif les autres lignes, en effet, s'il y a plusieurs cas d'échec, il faut le savoir.
+        // on pourra ajouter une case de couleur rouge sur les pièces qui créés l'échec.
+
+        Vector2 kingPos = verifyKing.transform.position;
+
+        foreach(GameObject obj in objectsToVerify)
+        {
+
+            //if(obj.name.ToLower().Split('_')[0] != "king")
+            //{
+            //Debug.Log(obj);
+            //rb = obj.GetComponent<Rigidbody2D>();
+            //Debug.Log(rb);
+
+            Rigidbody2D rigidBodyOfPiece = obj.GetComponent<Rigidbody2D>();
+            Vector2 posToVerif = rigidBodyOfPiece.position;
+
+            if (isRightPos == true && obj == Pieces)
+            {
+                posToVerif = rightVec;
+            }
+
+            //objIsCheck = VerifyIsMovable(obj, posToVerif, kingPos);
+            //}
+
+            if (VerifyIsMovable(obj, posToVerif, kingPos))
+            {
+                Debug.Log("WTF DUDE ! CHESS STATE ! WARNIIING !");
+
+                objIsCheck = true;
+
+            } 
+
+        }
+
+        if(objIsCheck)
+        {
+            //if (!isCheck && Pieces.tag == colorToVerify)
+            //{
+            //    return false;
+            //}
+
+            verifyKing.GetComponent<SpriteRenderer>().color = new Color(0.69f, 0, 0, 1);
+            isCheck = true;
+            return false;
+
+        } else
+        {
+            //verifyKing.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
+            isCheck = false;
+            return true;
+        }
+
+    }
+
+    //pour diago : peut etre 7.5 - initPos          (( ou verif jusqu'a x = 7.5 (mais si y = 7.5 avant, alors break la boucle) ))
+    //pour ligne droite : verif que x = 0 ou y = 0, jusqu'a 7.5
+
+    public bool CheckMateMovement(GameObject objToVerify, Vector2 positionToVerify)
+    {
+
+        //VerifyInFront(objToVerify, positionToVerify);
+
+        return true;
     }
 }
 
